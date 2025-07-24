@@ -1,26 +1,69 @@
-.initial-screen {
-    padding: 14px 24px
-}
-
-.header {
-    display: flex;
-    height: 36px;
-    justify-content: space-between;
-    padding: 8px 24px;
-}
-
-.right-side-header {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-}
-
-.section {
-    display: flex;
-}
-
 .main {
     width: 100%;
     background-color: #11110F;
-    padding: 18px 24px
+    padding: 18px 24px;
+    border-radius: 18px;
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+}
+
+.welcome {
+    font-size: 32px;
+    color: #26b248;
+}
+
+.pay-in {
+    border: 1px solid red;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+
+.pay-in-overview-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 24px;
+}
+
+.pay-in-overview {
+    font-size: 32px;
+}
+
+.update-btn {
+    background-color: #26B24B;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+}
+
+.cards-section {
+    display: flex;
+    gap: 18px;
+    padding: 8px;
+}
+
+.transaction-details-card {
+    height: 138px;
+    padding-top: 14px 20px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #38EF7D 0%, #11998E 100%);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 20px;
+}
+
+.flex-gap-8px {
+    display: flex;
+    gap: 8px;
+}
+
+.flex-gap-4px {
+    display: flex;
+    gap: 4px;
 }

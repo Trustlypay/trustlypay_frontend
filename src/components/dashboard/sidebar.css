@@ -20,6 +20,10 @@
 
 }
 
+.current-item:hover {
+    border-bottom: 3px solid #26B24B;
+}
+
 .ellipsis-text {
     white-space: nowrap;
     overflow: hidden;

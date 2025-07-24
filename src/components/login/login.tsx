@@ -2,7 +2,7 @@ import { Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
-import { routeMapMini } from "../route-map";
+import { routeMapMini } from "../../route-map";
 
 const Login = () => {
   const navigate = useNavigate();

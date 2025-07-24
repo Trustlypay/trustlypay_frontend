@@ -1,6 +1,8 @@
 import "./App.css";
 import { ConfigProvider } from "antd";
 import AppRoutes from "./routes";
+import Sidebar from "./components/dashboard/sidebar";
+import Header from "./components/header/header";
 
 function App() {
   return (
@@ -13,7 +15,13 @@ function App() {
           },
         }}
       >
-        <AppRoutes />
+        <div className="initial-screen">
+          <Header />
+          <section className="sidebar-main">
+            <Sidebar />
+            <AppRoutes />
+          </section>
+        </div>
       </ConfigProvider>
     </div>
   );

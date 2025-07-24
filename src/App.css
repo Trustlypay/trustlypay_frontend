@@ -10,3 +10,22 @@
     overflow: hidden;
     color: white
 }
+
+.playfair-display {
+    font-family: Playfair Display;
+    font-weight: 700;
+}
+
+.manrope {
+    font-family: Manrope;
+    font-weight: 700;
+}
+
+.initial-screen {
+    padding: 14px 24px
+}
+
+.sidebar-main {
+    display: flex;
+
+}

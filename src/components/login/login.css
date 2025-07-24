@@ -20,18 +20,8 @@
     text-transform: uppercase;
 }
 
-.playfair-display {
-    font-family: Playfair Display;
-    font-weight: 700;
-}
-
 .custom-input input::placeholder {
     color: white !important;
-}
-
-.manrope {
-    font-family: Manrope;
-    font-weight: 700;
 }
 
 .submit-btn {

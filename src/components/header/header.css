@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    height: 36px;
+    justify-content: space-between;
+    padding: 8px 24px;
+}
+
+.right-side-header {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.f-w-700-color {
+    font-weight: 700;
+    color: #26B24B;
+
+}
