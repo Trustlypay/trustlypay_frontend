@@ -11,8 +11,18 @@
     align-items: center;
 }
 
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.time-value {
+    min-width: 150px;
+}
+
 .f-w-700-color {
     font-weight: 700;
     color: #26B24B;
-
 }

@@ -72,11 +72,12 @@ const Dashboard = () => {
                 <div className="flex-gap-4px">
                   <img src="/rupee-symbol.svg" />
                   <span className="manrope" style={{ fontSize: "24px" }}>
-                    {item.totalAmount ?? 0}
+                    {item.totalAmount.toLocaleString("en-IN") ?? 0}
                   </span>
                 </div>
                 <div className="flex-gap-4px">
-                  {item.totalCount ?? 0} <span>Transactions</span>
+                  {item.totalCount.toLocaleString("en-IN") ?? 0}{" "}
+                  <span>Transactions</span>
                 </div>
               </div>
             </div>

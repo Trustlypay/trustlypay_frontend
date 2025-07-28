@@ -3,8 +3,24 @@ import { ConfigProvider } from "antd";
 import AppRoutes from "./routes";
 import Sidebar from "./components/dashboard/sidebar";
 import Header from "./components/header/header";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
+import { routeMapMini } from "./route-map";
 
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const parts = localStorage.getItem("token")?.split(".");
+    if (parts && JSON.parse(atob(parts[1])).exp > dayjs().unix()) {
+      navigate(location.pathname ?? routeMapMini.dashboard);
+    } else {
+      navigate(routeMapMini.login);
+    }
+  }, []);
+
   return (
     <div className="app">
       <ConfigProvider
@@ -16,9 +32,9 @@ function App() {
         }}
       >
         <div className="initial-screen">
-          <Header />
+          {localStorage.getItem("token") && <Header />}
           <section className="sidebar-main">
-            <Sidebar />
+            {localStorage.getItem("token") && <Sidebar />}
             <AppRoutes />
           </section>
         </div>

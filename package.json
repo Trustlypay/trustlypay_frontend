@@ -15,6 +15,7 @@
     "antd": "^5.26.6",
     "axios": "^1.10.0",
     "dayjs": "^1.11.13",
+    "jsonwebtoken": "^9.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.7.0"
