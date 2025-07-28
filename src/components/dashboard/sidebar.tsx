@@ -89,7 +89,13 @@ const Sidebar = () => {
         {array.map((item) =>
           !expanded ? (
             <div className="item-label">
-              <img src={item.image} />
+              <img
+                src={
+                  location.pathname === item.route
+                    ? item.activeImage
+                    : item.image
+                }
+              />
             </div>
           ) : (
             <div

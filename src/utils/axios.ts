@@ -27,7 +27,6 @@ Axios.interceptors.request.use(async (config) => {
 Axios.interceptors.response.use(
   (res) => res,
   (err) => {
-    console.error("Axios error:", err.message, err.code, err.config?.url);
     return Promise.reject(err);
   }
 );
