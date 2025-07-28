@@ -1,7 +1,7 @@
 import "./App.css";
 import { ConfigProvider } from "antd";
 import AppRoutes from "./routes";
-import Sidebar from "./components/dashboard/sidebar";
+import Sidebar from "./components/sidebar/sidebar";
 import Header from "./components/header/header";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,15 +11,22 @@ import { routeMapMini } from "./route-map";
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const parts = localStorage.getItem("token")?.split(".");
+    const parts = token?.split(".");
+
     if (parts && JSON.parse(atob(parts[1])).exp > dayjs().unix()) {
-      navigate(location.pathname ?? routeMapMini.dashboard);
+      navigate(
+        location.pathname !== routeMapMini.login
+          ? location.pathname
+          : routeMapMini.dashboard
+      );
     } else {
+      localStorage.removeItem("token");
       navigate(routeMapMini.login);
     }
-  }, []);
+  }, [token]);
 
   return (
     <div className="app">
@@ -32,9 +39,9 @@ function App() {
         }}
       >
         <div className="initial-screen">
-          {localStorage.getItem("token") && <Header />}
+          {token && <Header />}
           <section className="sidebar-main">
-            {localStorage.getItem("token") && <Sidebar />}
+            {token && <Sidebar />}
             <AppRoutes />
           </section>
         </div>

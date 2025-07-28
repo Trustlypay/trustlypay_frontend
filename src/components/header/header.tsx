@@ -30,22 +30,26 @@ const Header = () => {
     <div className="header">
       <img src="/trustlypay_image.svg" />
       <div className="right-side-header">
-        <div className="header-container">
-          <span className="f-w-700-color">Time:</span>
-          <div className="time-value">{currentTime}</div>
+        <div className=" right-side-header-content">
+          <div className="header-container">
+            <span className="f-w-700-color">Time:</span>
+            <div className="time-value">{currentTime}</div>
+          </div>
+          <div className="header-container">
+            <span className="f-w-700-color  ellipsis-text">Login-IP:</span>
+            {ip}
+          </div>
         </div>
-        <div className="header-container">
-          <span className="f-w-700-color  ellipsis-text">Login-IP:</span>
-          {ip}
+        <div className=" right-side-header-content">
+          <img src="/profile-icon.svg" />
+          <img
+            src="/logout.svg"
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate(routeMapMini.login);
+            }}
+          />
         </div>
-        <img src="/profile-icon.svg" />
-        <img
-          src="/logout.svg"
-          onClick={() => {
-            localStorage.removeItem("token");
-            navigate(routeMapMini.login);
-          }}
-        />
       </div>
     </div>
   );

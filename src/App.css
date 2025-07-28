@@ -6,9 +6,8 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    color: white
+    min-height: 100vh;
+    color: white;
 }
 
 .playfair-display {

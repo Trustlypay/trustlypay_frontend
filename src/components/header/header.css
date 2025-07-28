@@ -11,6 +11,12 @@
     align-items: center;
 }
 
+.right-side-header-content {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
 .header-container {
     display: flex;
     align-items: center;
