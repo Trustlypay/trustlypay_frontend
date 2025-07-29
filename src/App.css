@@ -34,3 +34,43 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.main {
+    width: 100%;
+    background-color: #11110F;
+    padding: 18px 24px;
+    border-radius: 18px;
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+}
+
+.font-size-32 {
+    font-size: 32px;
+}
+
+.sub-route-items {
+    display: flex;
+    gap: 6px;
+}
+
+.sub-route {
+    background-color: #26B24B;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    padding: 12px;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.sub-page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

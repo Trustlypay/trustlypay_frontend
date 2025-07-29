@@ -34,6 +34,9 @@ const Reports = React.lazy(
 const AccessManagement = React.lazy(
   async () => await import("./components/access-management/access-management")
 );
+const DetailedTransactions = React.lazy(
+  async () => await import("./components/payin/detailed-transactions")
+);
 
 function AppRoutes() {
   return (
@@ -124,6 +127,14 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <AccessManagement />
+          </Suspense>
+        }
+      />
+      <Route
+        path={routeMapMini.detailedTransactions}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <DetailedTransactions />
           </Suspense>
         }
       />

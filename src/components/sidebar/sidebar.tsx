@@ -91,7 +91,7 @@ const Sidebar = () => {
             <div className="item-label">
               <img
                 src={
-                  location.pathname === item.route
+                  location.pathname.includes(item.route)
                     ? item.activeImage
                     : item.image
                 }
@@ -106,7 +106,7 @@ const Sidebar = () => {
             >
               <img
                 src={
-                  location.pathname === item.route
+                  location.pathname.includes(item.route)
                     ? item.activeImage
                     : item.image
                 }

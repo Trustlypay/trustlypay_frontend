@@ -10,6 +10,7 @@ enum routeMapMini {
   reseller = "/reseller",
   reports = "/reports",
   accessManagement = "/access-management",
+  detailedTransactions = "/payin/detailed-transactions",
 }
 
 export { routeMapMini };

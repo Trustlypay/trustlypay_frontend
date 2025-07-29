@@ -1,13 +1,3 @@
-.main {
-    width: 100%;
-    background-color: #11110F;
-    padding: 18px 24px;
-    border-radius: 18px;
-    display: flex;
-    gap: 24px;
-    flex-direction: column;
-}
-
 .welcome {
     font-size: 32px;
     color: #26b248;
@@ -24,10 +14,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 24px;
-}
-
-.pay-in-overview {
-    font-size: 32px;
 }
 
 .update-btn {
