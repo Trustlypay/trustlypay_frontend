@@ -1,0 +1,23 @@
+.status {
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+}
+
+.success-status-color {
+    background-color: #E3FFD4;
+    color: #6EB83D;
+    border: 1px solid #6EB83D;
+}
+
+.pending-status-color {
+    background-color: #FFE9BF;
+    color: #EFA00B;
+    border: 1px solid #EFA00B;
+}
+
+.failed-status-color {
+    background-color: #F8A8A5;
+    color: #FC5130;
+    border: 1px solid #FC5130
+}

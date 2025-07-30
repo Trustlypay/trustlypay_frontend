@@ -1,5 +1,5 @@
 import "./App.css";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme } from "antd";
 import AppRoutes from "./routes";
 import Sidebar from "./components/sidebar/sidebar";
 import Header from "./components/header/header";
@@ -36,6 +36,7 @@ function App() {
             fontFamily: "Manrope",
             colorPrimary: "#26B24B",
           },
+          algorithm: [theme.darkAlgorithm, theme.compactAlgorithm],
         }}
       >
         <div className="initial-screen">
