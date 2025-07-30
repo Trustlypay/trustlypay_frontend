@@ -30,5 +30,5 @@
 
 .f-w-700-color {
     font-weight: 700;
-    color: #26B24B;
+    color: var(--primary-color)
 }

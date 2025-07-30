@@ -96,7 +96,7 @@ const DetailedTransactions = () => {
         );
 
         return (
-          <Paragraph copyable style={{ color: "#26B24B" }}>
+          <Paragraph copyable style={{ color: "var(--primary-color)" }}>
             {highlightedText}
           </Paragraph>
         );
@@ -189,9 +189,7 @@ const DetailedTransactions = () => {
   return (
     <div className="main">
       <div className="sub-page-header">
-        <div className="font-size-32 playfair-display">
-          Detailed Transactions
-        </div>
+        <div className="playfair-display">Detailed Transactions</div>
         <div style={{ display: "flex", gap: "1px" }}>
           {location.pathname
             .slice(1)

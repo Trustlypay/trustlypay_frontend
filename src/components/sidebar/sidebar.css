@@ -21,5 +21,5 @@
 }
 
 .current-item:hover {
-    border-bottom: 3px solid #26B24B;
+    border-bottom: 3px solid var(--primary-color);
 }

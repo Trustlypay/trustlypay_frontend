@@ -14,7 +14,7 @@
 }
 
 .login-text {
-    color: #26B24B;
+    color: var(--primary-color);
     font-size: 36px;
     text-transform: uppercase;
 }
@@ -24,7 +24,7 @@
 }
 
 .submit-btn {
-    background-color: #26B24B;
+    background-color: var(--primary-color);
     font-size: 24px;
     padding: 10px 24px;
     border-radius: 8px;

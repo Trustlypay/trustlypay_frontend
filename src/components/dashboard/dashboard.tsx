@@ -10,7 +10,7 @@ const Dashboard = () => {
       <div className="welcome playfair-display">I Welcome, Kiran</div>
       <div className="pay-in">
         <div className="pay-in-overview-section">
-          <div className="font-size-32 playfair-display">Pay In Overview</div>
+          <div className="playfair-display">Pay In Overview</div>
           <div style={{ display: "flex", gap: "15px" }}>
             <RangePicker />
             <Select style={{ width: "120px" }} defaultValue={"m1"}>
@@ -28,7 +28,7 @@ const Dashboard = () => {
       <div style={{ border: "1px dashed white" }}></div>
       <div className="pay-in">
         <div className="pay-in-overview-section">
-          <div className="font-size-32 playfair-display">Pay Out Overview</div>
+          <div className="playfair-display">Pay Out Overview</div>
         </div>
         <TransactionsCards />
         <TransactionsGraphs />

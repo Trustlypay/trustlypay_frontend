@@ -1,4 +1,6 @@
-#root {}
+#root {
+    --primary-color: #26B24B;
+}
 
 .app {
     background-image: url(/trustlypay_bg.jpg);
@@ -13,6 +15,7 @@
 .playfair-display {
     font-family: Playfair Display;
     font-weight: 700;
+    font-size: 32px;
 }
 
 .manrope {
@@ -55,7 +58,7 @@
 }
 
 .sub-route {
-    background-color: #26B24B;
+    background-color: var(--primary-color);
     border-radius: 12px;
     cursor: pointer;
     border: none;
@@ -73,4 +76,9 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.light-green-switch.ant-switch:not(.ant-switch-checked) {
+    background-color: #6EB83D !important;
+    border-color: #6EB83D !important;
 }

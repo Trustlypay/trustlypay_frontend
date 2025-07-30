@@ -42,10 +42,7 @@ const TransactionsCards = () => {
         >
           <div className="flex-gap-8px">
             <img src={item.src} />
-            <div
-              className="playfair-display ellipsis-text"
-              style={{ fontSize: "32px" }}
-            >
+            <div className="playfair-display ellipsis-text">
               {capitalizeFirstLetter(item.status)}
             </div>
           </div>

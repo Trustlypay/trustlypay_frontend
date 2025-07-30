@@ -73,7 +73,7 @@ export const getColumnSearchProps = (
     filterIcon: (filtered: boolean) => (
       <SearchOutlined
         style={{
-          color: filtered ? "#26B24B" : undefined,
+          color: filtered ? "var(--primary-color)" : undefined,
         }}
       />
     ),
