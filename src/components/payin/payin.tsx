@@ -18,10 +18,27 @@ const Payin = () => {
               navigate(routeMapMini.detailedTransactions);
             }}
           >
+            <img src="/detailed-transactions.png" />
             Detailed Transactions
           </button>
-          <button className="sub-route">Update Transactions</button>
-          <button className="sub-route">Check Status</button>
+          <button
+            className="sub-route"
+            onClick={() => {
+              navigate(routeMapMini.updateTransactions);
+            }}
+          >
+            <img src="/success-flash.svg" />
+            Update Transactions
+          </button>
+          <button
+            className="sub-route"
+            onClick={() => {
+              navigate(routeMapMini.checkStatus);
+            }}
+          >
+            <img src="/check-status.png" />
+            Check Status
+          </button>
         </div>
       </div>
       <div style={{ border: "1px dashed #CFD8D7 " }}></div>

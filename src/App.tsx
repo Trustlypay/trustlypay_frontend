@@ -36,7 +36,7 @@ function App() {
             fontFamily: "Manrope",
             colorPrimary: "#26B24B",
           },
-          algorithm: [theme.darkAlgorithm, theme.compactAlgorithm],
+          algorithm: [theme.darkAlgorithm],
         }}
       >
         <div className="initial-screen">

@@ -37,6 +37,12 @@ const AccessManagement = React.lazy(
 const DetailedTransactions = React.lazy(
   async () => await import("./components/payin/detailed-transactions")
 );
+const UpdateTransactions = React.lazy(
+  async () => await import("./components/payin/update-transactions")
+);
+const CheckStatus = React.lazy(
+  async () => await import("./components/payin/check-status")
+);
 
 function AppRoutes() {
   return (
@@ -138,6 +144,22 @@ function AppRoutes() {
           </Suspense>
         }
       />
+      <Route
+        path={routeMapMini.updateTransactions}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <UpdateTransactions />
+          </Suspense>
+        }
+      />
+      <Route
+        path={routeMapMini.checkStatus}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <CheckStatus />
+          </Suspense>
+        }
+      ></Route>
     </Routes>
   );
 }

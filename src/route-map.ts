@@ -11,6 +11,8 @@ enum routeMapMini {
   reports = "/reports",
   accessManagement = "/access-management",
   detailedTransactions = "/payin/detailed-transactions",
+  updateTransactions = "/payin/update-transactions",
+  checkStatus = "/payin/check-status",
 }
 
 export { routeMapMini };

@@ -1,8 +1,10 @@
 import { Table } from "antd";
+import { useNavigate } from "react-router-dom";
+import { routeMapMini } from "../../route-map";
 
 const dataSource = [
   {
-    "Merchant Name": "Peshot INfO Syatem",
+    "Merchant Name": "Peshot Info System",
     "Merchant ID": "TP-2021",
     "# Success": 32,
     "# Failed": 9,
@@ -24,55 +26,69 @@ const dataSource = [
     "Success %": "1%",
   },
 ];
-const columns = [
-  {
-    title: "Merchant Name",
-    dataIndex: "Merchant Name",
-    key: "Merchant Name",
-  },
-  {
-    title: "Merchant ID",
-    dataIndex: "Merchant ID",
-    key: "Merchant ID",
-  },
-  {
-    title: "# Success",
-    dataIndex: "# Success",
-    key: "# Success",
-  },
-  {
-    title: "# Failed",
-    dataIndex: "# Failed",
-    key: "# Failed",
-  },
-  {
-    title: "# Pending",
-    dataIndex: "# Pending",
-    key: "# Pending",
-  },
-  {
-    title: "Success Amount",
-    dataIndex: "Success Amount",
-    key: "Success Amount",
-  },
-  {
-    title: "Failed Amount",
-    dataIndex: "Failed Amount",
-    key: "Failed Amount",
-  },
-  {
-    title: "Pending Amount",
-    dataIndex: "Pending Amount",
-    key: "Pending Amount",
-  },
-  {
-    title: "Success %",
-    dataIndex: "Success %",
-    key: "Success %",
-  },
-];
 
 const SummarizedTransactionsTable = ({ checked }: { checked: boolean }) => {
+  const navigate = useNavigate();
+
+  const columns = [
+    {
+      title: "Merchant Name",
+      dataIndex: "Merchant Name",
+      key: "Merchant Name",
+      render: (value: string) => (
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            navigate(
+              `${routeMapMini.detailedTransactions}?merchnat-name=${value}`
+            );
+          }}
+        >
+          {value}
+        </div>
+      ),
+    },
+    {
+      title: "Merchant ID",
+      dataIndex: "Merchant ID",
+      key: "Merchant ID",
+    },
+    {
+      title: "# Success",
+      dataIndex: "# Success",
+      key: "# Success",
+    },
+    {
+      title: "# Failed",
+      dataIndex: "# Failed",
+      key: "# Failed",
+    },
+    {
+      title: "# Pending",
+      dataIndex: "# Pending",
+      key: "# Pending",
+    },
+    {
+      title: "Success Amount",
+      dataIndex: "Success Amount",
+      key: "Success Amount",
+    },
+    {
+      title: "Failed Amount",
+      dataIndex: "Failed Amount",
+      key: "Failed Amount",
+    },
+    {
+      title: "Pending Amount",
+      dataIndex: "Pending Amount",
+      key: "Pending Amount",
+    },
+    {
+      title: "Success %",
+      dataIndex: "Success %",
+      key: "Success %",
+    },
+  ];
   return (
     <Table
       dataSource={dataSource}

@@ -44,11 +44,6 @@
     padding: 14px 20px;
 }
 
-.flex-gap-8px {
-    display: flex;
-    gap: 8px;
-}
-
 .flex-gap-4px {
     display: flex;
     gap: 4px;
