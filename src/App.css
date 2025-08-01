@@ -8,8 +8,14 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
     color: white;
+    overflow: auto;
+}
+
+.app::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Edge */
 }
 
 .playfair-display {
@@ -24,12 +30,12 @@
 }
 
 .initial-screen {
-    padding: 14px 24px
+    padding: 14px 24px;
 }
 
 .sidebar-main {
     display: flex;
-
+    min-height: calc(100vh - 80px);
 }
 
 .ellipsis-text {
@@ -54,7 +60,7 @@
 
 .sub-route-items {
     display: flex;
-    gap: 6px;
+    gap: 24px;
 }
 
 .sub-route {
@@ -64,6 +70,10 @@
     border: none;
     color: white;
     padding: 12px;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-header {
@@ -81,4 +91,11 @@
 .light-green-switch.ant-switch:not(.ant-switch-checked) {
     background-color: #6EB83D !important;
     border-color: #6EB83D !important;
+}
+
+.flex-gap-8px {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,13 +1,12 @@
 import { Typography, type InputRef } from "antd";
+import type { FilterValue } from "antd/es/table/interface";
 import dayjs from "dayjs";
-import "./detailed-transactions.css";
-import RangePicker from "../common/range-picker";
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getColumnSearchProps } from "../common/get-column-search";
 import Highlighter from "react-highlight-words";
 import MainContentHeader from "../common/main-content-header";
-import { useSearchParams } from "react-router-dom";
-import type { FilterValue } from "antd/es/table/interface";
+import RangePicker from "../common/range-picker";
 import AntdTable from "../common/antd-table";
 
 const { Paragraph } = Typography;
@@ -41,7 +40,7 @@ const dataSource = Array.from({ length: 500 }).map<IPayin>((_, i) => ({
   Status: status[Math.floor(Math.random() * status.length)],
 }));
 
-const DetailedTransactions = () => {
+const DetailedSettlementTransactions = () => {
   const [searchParams] = useSearchParams();
 
   const [searchTransactionIDText, setSearchTransactionIDText] = useState("");
@@ -206,7 +205,7 @@ const DetailedTransactions = () => {
 
   return (
     <div className="main">
-      <MainContentHeader title="Detailed Transactions" />
+      <MainContentHeader title="Detailed Settlement Transactions" />
       <div
         style={{
           display: "flex",
@@ -231,4 +230,4 @@ const DetailedTransactions = () => {
   );
 };
 
-export default DetailedTransactions;
+export default DetailedSettlementTransactions;

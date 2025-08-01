@@ -1,6 +1,6 @@
 export function capitalizeFirstLetter(input: string): string {
   const result = input
-    .replace("-", " ")
+    .replaceAll("-", " ")
     .split(" ")
     .map((item) => {
       return item?.charAt(0).toUpperCase() + item?.slice(1);

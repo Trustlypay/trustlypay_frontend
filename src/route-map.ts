@@ -13,6 +13,10 @@ enum routeMapMini {
   detailedTransactions = "/payin/detailed-transactions",
   updateTransactions = "/payin/update-transactions",
   checkStatus = "/payin/check-status",
+  detailedSettlementTransactions = "/settlement/detailed-settlement-transactions",
+  bulkAdjustment = "/settlement/bulk-adjustment",
+  chargebackRefund = "/settlement/chargeback-refund",
+  settlementStatement = "/settlement/settlement-statement",
 }
 
 export { routeMapMini };

@@ -43,6 +43,19 @@ const UpdateTransactions = React.lazy(
 const CheckStatus = React.lazy(
   async () => await import("./components/payin/check-status")
 );
+const DetailedSettlementTransactions = React.lazy(
+  async () =>
+    await import("./components/settlement/detailed-settlement-transactions")
+);
+const BulkAdjustment = React.lazy(
+  async () => await import("./components/settlement/bulk-adjustment")
+);
+const ChargebackRefund = React.lazy(
+  async () => await import("./components/settlement/chargeback-refund")
+);
+const SettlementStatement = React.lazy(
+  async () => await import("./components/settlement/settlement-statement")
+);
 
 function AppRoutes() {
   return (
@@ -157,6 +170,38 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <CheckStatus />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.detailedSettlementTransactions}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <DetailedSettlementTransactions />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.bulkAdjustment}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <BulkAdjustment />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.chargebackRefund}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <ChargebackRefund />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.settlementStatement}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <SettlementStatement />
           </Suspense>
         }
       ></Route>
