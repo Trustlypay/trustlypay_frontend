@@ -21,7 +21,7 @@ const UpdateTransactions = () => {
           display: "flex",
           flexDirection: "column",
           gap: "36px",
-          textAlign: "center",
+          alignItems: "center",
           margin: "0px auto",
         }}
       >

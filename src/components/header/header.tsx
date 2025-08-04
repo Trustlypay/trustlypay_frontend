@@ -41,7 +41,12 @@ const Header = () => {
           </div>
         </div>
         <div className=" right-side-header-content">
-          <img src="/profile-icon.svg" />
+          <img
+            src="/profile-icon.svg"
+            onClick={() => {
+              navigate(routeMapMini.myAccount);
+            }}
+          />
           <img
             src="/logout.svg"
             onClick={() => {

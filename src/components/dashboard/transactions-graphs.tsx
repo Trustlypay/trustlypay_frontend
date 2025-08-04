@@ -25,7 +25,7 @@ const TransactionsGraphs = () => {
           </div>
         </div>
       </div>
-      <div style={{ border: "1px dashed #999999" }}></div>
+      <div style={{ border: "1px dashed #CFD8D7" }}></div>
       <div style={{ flex: 1 }}>
         <div
           style={{

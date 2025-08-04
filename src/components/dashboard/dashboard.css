@@ -1,5 +1,5 @@
 .welcome {
-    color: #26b248;
+    color: var(--primary-color);
 }
 
 .pay-in {

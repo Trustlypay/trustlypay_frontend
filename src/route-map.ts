@@ -17,6 +17,10 @@ enum routeMapMini {
   bulkAdjustment = "/settlement/bulk-adjustment",
   chargebackRefund = "/settlement/chargeback-refund",
   settlementStatement = "/settlement/settlement-statement",
+  myAccount = "/my-account",
+  payoutDetailedTransactions = "/payout/detailed-transactions",
+  accounts = "/payout/accounts",
+  statement = "/payout/statement",
 }
 
 export { routeMapMini };

@@ -1,6 +1,5 @@
 import { Table } from "antd";
 import { NavLink } from "react-router-dom";
-import { routeMapMini } from "../../route-map";
 
 const dataSource = [
   {
@@ -27,18 +26,20 @@ const dataSource = [
   },
 ];
 
-const SummarizedTransactionsTable = ({ checked }: { checked: boolean }) => {
+const SummarizedTransactionsTable = ({
+  checked,
+  navigateTo,
+}: {
+  checked: boolean;
+  navigateTo: string;
+}) => {
   const columns = [
     {
       title: "Merchant Name",
       dataIndex: "Merchant Name",
       key: "Merchant Name",
       render: (value: string) => (
-        <NavLink
-          to={`${routeMapMini.detailedTransactions}?merchnat-name=${value}`}
-        >
-          {value}
-        </NavLink>
+        <NavLink to={`${navigateTo}?merchnat-name=${value}`}>{value}</NavLink>
       ),
     },
     {

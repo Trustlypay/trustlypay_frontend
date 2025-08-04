@@ -9,6 +9,10 @@ const rangePresets: TimeRangePickerProps["presets"] = [
 ];
 
 const RangePicker = () => {
+  const onDateChange = (_dates: any, dateStrings: [string, string]) => {
+    console.log("dateStrings", dateStrings);
+  };
+
   return (
     <DatePicker.RangePicker
       showTime
@@ -19,6 +23,7 @@ const RangePicker = () => {
         },
         ...rangePresets,
       ]}
+      onChange={onDateChange}
     />
   );
 };

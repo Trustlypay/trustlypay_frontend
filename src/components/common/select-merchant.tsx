@@ -2,7 +2,12 @@ import { Select } from "antd";
 
 const SelectMerchant = () => {
   return (
-    <Select style={{ width: "180px" }} placeholder="Select Merchant">
+    <Select
+      style={{ width: "180px" }}
+      placeholder="Select Merchant"
+      defaultValue={"All"}
+    >
+      <Select.Option value="All">All</Select.Option>
       <Select.Option value="Peshot Info System">
         Peshot Info System
       </Select.Option>

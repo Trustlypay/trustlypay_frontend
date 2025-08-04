@@ -29,7 +29,7 @@ type PieSectorDataItem = React.SVGProps<SVGPathElement> &
   PieSectorData;
 
 const data = [
-  { name: "Success", value: 320, color: "#6EB83D", border: "#000000" },
+  { name: "Success", value: 320, color: "#6EB83D" },
   { name: "Pending", value: 105, color: "#EFA00B" },
   { name: "Failed", value: 12, color: "#FC5130" },
 ];

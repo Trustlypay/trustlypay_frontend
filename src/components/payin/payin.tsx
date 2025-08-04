@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { routeMapMini } from "../../route-map";
 import { Switch } from "antd";
-import SummarizedTransactionsTable from "./summarized-transactions-table";
+import SummarizedTransactionsTable from "../common/summarized-transactions-table";
 import { useState } from "react";
+import WhiteBorder from "../common/white-border";
 
 const Payin = () => {
   const [checked, setChecked] = useState(true);
@@ -41,7 +42,7 @@ const Payin = () => {
           </button>
         </div>
       </div>
-      <div style={{ border: "1px dashed #CFD8D7 " }}></div>
+      <WhiteBorder />
       <div style={{ display: "flex", gap: "6px", flexDirection: "column" }}>
         <div className="playfair-display">Summarized Transactions</div>
         <div
@@ -62,7 +63,10 @@ const Payin = () => {
             className={!checked ? "light-green-switch" : ""}
           />
         </div>
-        <SummarizedTransactionsTable checked={checked} />
+        <SummarizedTransactionsTable
+          checked={checked}
+          navigateTo={routeMapMini.detailedTransactions}
+        />
       </div>
     </div>
   );

@@ -56,6 +56,18 @@ const ChargebackRefund = React.lazy(
 const SettlementStatement = React.lazy(
   async () => await import("./components/settlement/settlement-statement")
 );
+const MyAccount = React.lazy(
+  async () => await import("./components/myaccount/my-account")
+);
+const PayoutDetailedTransactions = React.lazy(
+  async () => await import("./components/payout/payout-detailed-transactions")
+);
+const Accounts = React.lazy(
+  async () => await import("./components/payout/accounts")
+);
+const Statement = React.lazy(
+  async () => await import("./components/payout/statement")
+);
 
 function AppRoutes() {
   return (
@@ -202,6 +214,38 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <SettlementStatement />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.myAccount}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MyAccount />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.payoutDetailedTransactions}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <PayoutDetailedTransactions />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.accounts}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <Accounts />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.statement}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <Statement />
           </Suspense>
         }
       ></Route>

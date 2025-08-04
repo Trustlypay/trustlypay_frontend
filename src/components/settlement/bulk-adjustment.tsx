@@ -4,6 +4,7 @@ import type { CheckboxGroupProps } from "antd/es/checkbox";
 import { useState } from "react";
 import RangePicker from "../common/range-picker";
 import SelectMerchant from "../common/select-merchant";
+import UploadFile from "../payin/upload-file";
 
 const options: CheckboxGroupProps<string>["options"] = [
   { label: "Settlement", value: "Settlement" },
@@ -22,14 +23,14 @@ const BulkAdjustment = () => {
           display: "flex",
           flexDirection: "column",
           gap: "36px",
-          textAlign: "center",
+          alignItems: "center",
           margin: "0px auto",
         }}
       >
         <div>
           Note :Download this
           <u style={{ color: "var(--primary-color)" }}> sample file </u> for
-          chargesbacks and refunds
+          chargebacks and refunds
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
           <Radio.Group
@@ -44,6 +45,7 @@ const BulkAdjustment = () => {
         <div style={{ display: "flex", gap: "22px" }}>
           <RangePicker /> <SelectMerchant />
         </div>
+        <UploadFile />
         <div
           style={{
             display: "flex",

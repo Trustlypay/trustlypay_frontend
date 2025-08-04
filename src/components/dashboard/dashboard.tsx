@@ -4,6 +4,7 @@ import TransactionsCards from "./transactions-cards";
 import TransactionsGraphs from "./transactions-graphs";
 import RangePicker from "../common/range-picker";
 import SelectMerchant from "../common/select-merchant";
+import WhiteBorder from "../common/white-border";
 
 const dataSource = [
   {
@@ -52,7 +53,7 @@ const Dashboard = () => {
         <TransactionsCards />
         <TransactionsGraphs />
       </div>
-      <div style={{ border: "1px dashed white" }}></div>
+      <WhiteBorder />
       <div className="pay-in">
         <div className="pay-in-overview-section">
           <div className="playfair-display">Pay Out Overview</div>
@@ -60,7 +61,7 @@ const Dashboard = () => {
         <TransactionsCards />
         <TransactionsGraphs />
       </div>
-      <div style={{ border: "1px dashed white" }}></div>
+      <WhiteBorder />
       <div className="pay-in">
         <div className="pay-in-overview-section">
           <div className="playfair-display">Merchant GateWay Route</div>

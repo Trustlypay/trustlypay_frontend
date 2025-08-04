@@ -1,59 +1,38 @@
 import { Typography, type InputRef } from "antd";
-import dayjs from "dayjs";
-import "./detailed-transactions.css";
-import RangePicker from "../common/range-picker";
-import { useEffect, useRef, useState } from "react";
-import { getColumnSearchProps } from "../common/get-column-search";
-import Highlighter from "react-highlight-words";
 import MainContentHeader from "../common/main-content-header";
-import { useSearchParams } from "react-router-dom";
-import type { FilterValue } from "antd/es/table/interface";
+import RangePicker from "../common/range-picker";
 import AntdTable from "../common/antd-table";
+import { getColumnSearchProps } from "../common/get-column-search";
+import { useEffect, useRef, useState } from "react";
+import Highlighter from "react-highlight-words";
+import type { FilterValue } from "antd/es/table/interface";
+import dayjs from "dayjs";
+import { useSearchParams } from "react-router-dom";
 
 const { Paragraph } = Typography;
 
-interface IPayin {
-  TimeStamp: string;
-  "Created Time": string;
-  "User Name": string;
-  Amount: string;
-  "Transaction ID": string;
-  UTR: string;
-  UDF1: string;
-  Merchant: string;
-  Status: string;
-}
-
 const status = ["Success", "Pending", "Failed"];
 const merchants = ["Peshot Info System", "TrustlyPay"];
-const dataSource = Array.from({ length: 500 }).map<IPayin>((_, i) => ({
+const dataSource = Array.from({ length: 500 }).map((_, i) => ({
   TimeStamp: dayjs().add(i, "s").format("YYYY-MM-DD HH:mm:ss"),
-  "Created Time": dayjs()
-    .add(i + 1, "s")
-    .format("YYYY-MM-DD HH:mm:ss"),
-  "User Name": "Kiran Reddy",
-  Amount: Math.floor(Math.random() * 100000).toLocaleString("en-IN"),
   "Transaction ID": "TPcO1qyEQJhpgP" + i * 10,
-  UTR: Math.floor(Math.random() * 1000000000000).toString(),
-  UDF1: Math.floor(Math.random() * 10000000000).toString(),
   Merchant: merchants[Math.floor(Math.random() * merchants.length)],
+  "Beneficiary Name": "kiran",
+  Amount: Math.floor(Math.random() * 100000).toLocaleString("en-IN"),
+  "Beneficiary Email": "kiran@trustlypay.com",
+  "Beneficiary Phone": "9876543216",
+  "Beneficiary Acc #": Math.floor(Math.random() * 10000000000).toLocaleString(
+    "en-IN"
+  ),
   Status: status[Math.floor(Math.random() * status.length)],
 }));
 
-const DetailedTransactions = () => {
+const PayoutDetailedTransactions = () => {
   const [searchParams] = useSearchParams();
 
   const [searchTransactionIDText, setSearchTransactionIDText] = useState("");
   const [searchedTransactionID, setSearchedTransactionID] = useState("");
   const searchTransactionID = useRef<InputRef>(null);
-
-  const [searchUTRText, setSearchUTRText] = useState("");
-  const [searchedUTR, setSearchedUTR] = useState("");
-  const searchUTR = useRef<InputRef>(null);
-
-  const [searchUDF1Text, setSearchUDF1Text] = useState("");
-  const [searchedUDF1, setSearchedUDF1] = useState("");
-  const searchUDF1 = useRef<InputRef>(null);
 
   const [filters, setFilters] = useState<Record<string, FilterValue | null>>();
 
@@ -70,22 +49,6 @@ const DetailedTransactions = () => {
       title: "TimeStamp",
       dataIndex: "TimeStamp",
       key: "TimeStamp",
-    },
-    {
-      title: "Created Time",
-      dataIndex: "Created Time",
-      key: "Created Time",
-    },
-    {
-      title: "User Name",
-      dataIndex: "User Name",
-      key: "User Name",
-    },
-    {
-      title: "Amount",
-      dataIndex: "Amount",
-      key: "Amount",
-      render: (value: string) => <div>{"₹ " + value}</div>,
     },
     {
       title: "Transaction ID",
@@ -119,52 +82,6 @@ const DetailedTransactions = () => {
       filteredValue: filters?.["Transaction ID"] || null,
     },
     {
-      title: "UTR",
-      dataIndex: "UTR",
-      key: "UTR",
-      ...getColumnSearchProps(
-        "UTR",
-        searchUTR,
-        setSearchUTRText,
-        setSearchedUTR
-      ),
-      render: (value: string) =>
-        searchedUTR === "UTR" ? (
-          <Highlighter
-            highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-            searchWords={[searchUTRText]}
-            autoEscape
-            textToHighlight={value ? value.toString() : ""}
-          />
-        ) : (
-          value
-        ),
-      filteredValue: filters?.UTR || null,
-    },
-    {
-      title: "UDF1",
-      dataIndex: "UDF1",
-      key: "UDF1",
-      ...getColumnSearchProps(
-        "UDF1",
-        searchUDF1,
-        setSearchUDF1Text,
-        setSearchedUDF1
-      ),
-      render: (value: string) =>
-        searchedUDF1 === "UDF1" ? (
-          <Highlighter
-            highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-            searchWords={[searchUDF1Text]}
-            autoEscape
-            textToHighlight={value ? value.toString() : ""}
-          />
-        ) : (
-          value
-        ),
-      filteredValue: filters?.UDF1 || null,
-    },
-    {
       title: "Merchant",
       dataIndex: "Merchant",
       key: "Merchant",
@@ -174,10 +91,38 @@ const DetailedTransactions = () => {
         }
       ),
       filterSearch: true,
-      onFilter: (value: boolean | React.Key, record: IPayin) =>
+      onFilter: (value: boolean | React.Key, record: any) =>
         record.Merchant === (value as string),
       filteredValue: filters?.Merchant || null,
     },
+
+    {
+      title: "Beneficiary Name",
+      dataIndex: "Beneficiary Name",
+      key: "Beneficiary Name",
+    },
+    {
+      title: "Amount",
+      dataIndex: "Amount",
+      key: "Amount",
+      render: (value: string) => <div>{"₹ " + value}</div>,
+    },
+    {
+      title: "Beneficiary Email",
+      dataIndex: "Beneficiary Email",
+      key: "Beneficiary Email",
+    },
+    {
+      title: "Beneficiary Phone",
+      dataIndex: "Beneficiary Phone",
+      key: "Beneficiary Phone",
+    },
+    {
+      title: "Beneficiary Acc #",
+      dataIndex: "Beneficiary Acc #",
+      key: "Beneficiary Acc #",
+    },
+
     {
       title: "Status",
       dataIndex: "Status",
@@ -196,13 +141,12 @@ const DetailedTransactions = () => {
         return { text: item, value: item };
       }),
       filterSearch: true,
-      onFilter: (value: boolean | React.Key, record: IPayin) => {
+      onFilter: (value: boolean | React.Key, record: any) => {
         return record.Status === (value as string);
       },
       filteredValue: filters?.Status || null,
     },
   ];
-
   return (
     <div className="main">
       <MainContentHeader title="Detailed Transactions" />
@@ -230,4 +174,4 @@ const DetailedTransactions = () => {
   );
 };
 
-export default DetailedTransactions;
+export default PayoutDetailedTransactions;

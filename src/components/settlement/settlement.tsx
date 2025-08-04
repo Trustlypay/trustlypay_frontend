@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { routeMapMini } from "../../route-map";
 import { Table } from "antd";
 import dayjs from "dayjs";
+import WhiteBorder from "../common/white-border";
 
 const dataSource = [
   {
@@ -107,7 +108,7 @@ const Settlement = () => {
           </button>
         </div>
       </div>
-      <div style={{ border: "1px dashed #CFD8D7 " }}></div>
+      <WhiteBorder />
       <div style={{ display: "flex", gap: "6px", flexDirection: "column" }}>
         <div className="playfair-display">Settlement Overview</div>{" "}
         <Table dataSource={dataSource} columns={columns} />

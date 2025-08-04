@@ -95,6 +95,7 @@ const SettlementStatement = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: "12px",
         }}
       >
         <div

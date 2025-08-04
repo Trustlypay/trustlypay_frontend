@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { routeMapMini } from "./route-map";
+import { App as AntdApp } from "antd";
 
 function App() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function App() {
     if (parts && JSON.parse(atob(parts[1])).exp > dayjs().unix()) {
       navigate(
         location.pathname !== routeMapMini.login
-          ? location.pathname
+          ? location.pathname + location.search
           : routeMapMini.dashboard
       );
     } else {
@@ -30,23 +31,26 @@ function App() {
 
   return (
     <div className="app">
-      <ConfigProvider
-        theme={{
-          token: {
-            fontFamily: "Manrope",
-            colorPrimary: "#26B24B",
-          },
-          algorithm: [theme.darkAlgorithm],
-        }}
-      >
-        <div className="initial-screen">
-          {token && <Header />}
-          <section className="sidebar-main">
-            {token && <Sidebar />}
-            <AppRoutes />
-          </section>
-        </div>
-      </ConfigProvider>
+      <AntdApp component={false}>
+        <ConfigProvider
+          theme={{
+            token: {
+              fontFamily: "Manrope",
+              colorPrimary: "#26B24B",
+            },
+            algorithm: [theme.darkAlgorithm],
+            components: { Form: { verticalLabelPadding: "0" } },
+          }}
+        >
+          <div className="initial-screen">
+            {token && <Header />}
+            <section className="sidebar-main">
+              {token && <Sidebar />}
+              <AppRoutes />
+            </section>
+          </div>
+        </ConfigProvider>
+      </AntdApp>
     </div>
   );
 }
