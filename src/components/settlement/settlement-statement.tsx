@@ -7,7 +7,7 @@ import RangePicker from "../common/range-picker";
 
 const { Paragraph } = Typography;
 
-const status = ["Settled", "Pending"];
+const status = ["Settled", "Unsettled"];
 const settledBy = ["Shesh", "Varun Sai", "Dinesh", "Abhishek"];
 
 const dataSource = Array.from({ length: 500 }).map((_, i) => ({
@@ -57,7 +57,7 @@ const SettlementStatement = () => {
         switch (value) {
           case "Settled":
             return <div className="status success-status-color">{value}</div>;
-          case "Pending":
+          case "Unsettled":
             return <div className="status pending-status-color">{value}</div>;
         }
       },
