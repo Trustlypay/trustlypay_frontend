@@ -1,5 +1,7 @@
-import { DatePicker, type TimeRangePickerProps } from "antd";
+import { DatePicker, Typography, type TimeRangePickerProps } from "antd";
 import dayjs from "dayjs";
+
+const { Paragraph } = Typography;
 
 const rangePresets: TimeRangePickerProps["presets"] = [
   { label: "Last 7 Days", value: [dayjs().add(-7, "d"), dayjs()] },
@@ -14,17 +16,29 @@ const RangePicker = () => {
   };
 
   return (
-    <DatePicker.RangePicker
-      showTime
-      presets={[
-        {
-          label: <span aria-label="Current Time to End of Day">Now ~ EOD</span>,
-          value: () => [dayjs(), dayjs().endOf("day")],
-        },
-        ...rangePresets,
-      ]}
-      onChange={onDateChange}
-    />
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        gap: "12px",
+      }}
+    >
+      <Paragraph style={{ margin: 0 }}>Date : </Paragraph>
+      <DatePicker.RangePicker
+        showTime
+        presets={[
+          {
+            label: (
+              <span aria-label="Current Time to End of Day">Now ~ EOD</span>
+            ),
+            value: () => [dayjs(), dayjs().endOf("day")],
+          },
+          ...rangePresets,
+        ]}
+        onChange={onDateChange}
+      />
+    </div>
   );
 };
 

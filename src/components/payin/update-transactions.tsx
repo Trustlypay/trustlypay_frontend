@@ -14,7 +14,7 @@ const options: CheckboxGroupProps<string>["options"] = [
 const UpdateTransactions = () => {
   const [value, setValue] = useState("Mark Success");
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <MainContentHeader title="Update Transactions" />
       <div
         style={{

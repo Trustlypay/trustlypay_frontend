@@ -10,7 +10,7 @@ const Payout = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <div className="section-header">
         <div className="playfair-display">Pay-Out</div>
         <div className="sub-route-items">

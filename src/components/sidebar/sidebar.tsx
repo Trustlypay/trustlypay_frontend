@@ -1,20 +1,10 @@
-import { useState } from "react";
 import "./sidebar.css";
 import { routeMapMini } from "../../route-map";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  const handleMouseEnter = () => {
-    setExpanded(true);
-  };
-
-  const onMouseLeave = () => {
-    setExpanded(false);
-  };
 
   const array = [
     {
@@ -81,40 +71,26 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-      <ul
-        className="sidebar-items"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        {array.map((item) =>
-          !expanded ? (
-            <div className="item-label">
-              <img
-                src={
-                  location.pathname.includes(item.route)
-                    ? item.activeImage
-                    : item.image
-                }
-              />
-            </div>
-          ) : (
-            <div
-              className="item-label current-item"
-              onClick={() => {
-                navigate(item.route);
-              }}
-            >
-              <img
-                src={
-                  location.pathname.includes(item.route)
-                    ? item.activeImage
-                    : item.image
-                }
-              />
-              <div className="ellipsis-text">{item.title}</div>
-            </div>
-          )
-        )}
+      <ul className="sidebar-items">
+        {array.map((item) => (
+          <div
+            key={item.title}
+            className={`item-label ${
+              location.pathname.includes(item.route) ? "current-item" : ""
+            }`}
+            onClick={() => navigate(item.route)}
+          >
+            <img
+              src={
+                location.pathname.includes(item.route)
+                  ? item.activeImage
+                  : item.image
+              }
+              alt={item.title}
+            />
+            <div className="ellipsis-text">{item.title}</div>
+          </div>
+        ))}
       </ul>
     </aside>
   );

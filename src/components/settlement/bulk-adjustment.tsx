@@ -16,7 +16,7 @@ const BulkAdjustment = () => {
   const [value, setValue] = useState("Settlement");
 
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <MainContentHeader title="Bulk Adjustment" />
       <div
         style={{
@@ -42,10 +42,12 @@ const BulkAdjustment = () => {
             }}
           />
         </div>
-        <div style={{ display: "flex", gap: "22px" }}>
-          <RangePicker /> <SelectMerchant />
-        </div>
-        <UploadFile />
+        {["Settlement"].includes(value) && (
+          <div style={{ display: "flex", gap: "22px" }}>
+            <RangePicker /> <SelectMerchant />
+          </div>
+        )}
+        {["Chargeback", "Refund"].includes(value) && <UploadFile />}
         <div
           style={{
             display: "flex",

@@ -4,6 +4,7 @@ import AntdTable from "../common/antd-table";
 import dayjs from "dayjs";
 import { Progress, Typography } from "antd";
 import RangePicker from "../common/range-picker";
+import "./../payin/detailed-transactions.css";
 
 const { Paragraph } = Typography;
 
@@ -83,7 +84,7 @@ const SettlementStatement = () => {
   ];
 
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <MainContentHeader
         title="Settlement Statement"
         breadcrumb={`/settlement/${searchParams
@@ -126,17 +127,7 @@ const SettlementStatement = () => {
             strokeColor={"#EFA00B"}
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            gap: "12px",
-          }}
-        >
-          <Paragraph style={{ margin: 0 }}>Date : </Paragraph>
-          <RangePicker />
-        </div>
+        <RangePicker />
       </div>
       <AntdTable dataSource={dataSource} columns={columns} />
     </div>

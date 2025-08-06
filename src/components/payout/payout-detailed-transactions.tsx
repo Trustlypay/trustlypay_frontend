@@ -148,21 +148,9 @@ const PayoutDetailedTransactions = () => {
     },
   ];
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <MainContentHeader title="Detailed Transactions" />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          gap: "12px",
-        }}
-      >
-        <Paragraph style={{ margin: 0 }}>Date : </Paragraph>
-        <div>
-          <RangePicker />
-        </div>
-      </div>
+      <RangePicker />
       <AntdTable
         dataSource={dataSource}
         columns={columns}

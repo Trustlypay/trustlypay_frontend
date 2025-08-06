@@ -50,7 +50,7 @@ const columns = [
 
 const MyAccount = () => {
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <div className="section-header">
         <div className="playfair-display">My Account</div>
       </div>

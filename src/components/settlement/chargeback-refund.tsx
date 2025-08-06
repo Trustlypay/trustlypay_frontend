@@ -2,12 +2,10 @@ import dayjs from "dayjs";
 import AntdTable from "../common/antd-table";
 import MainContentHeader from "../common/main-content-header";
 import RangePicker from "../common/range-picker";
-import { Select, Typography, type InputRef } from "antd";
+import { Select, type InputRef } from "antd";
 import Highlighter from "react-highlight-words";
 import { useRef, useState } from "react";
 import { getColumnSearchProps } from "../common/get-column-search";
-
-const { Paragraph } = Typography;
 
 const merchants = ["Peshot Info System", "TrustlyPay"];
 const actionBy = ["Sheh", "Varun Sai", "Dinesh", "Abhishek"];
@@ -101,7 +99,7 @@ const ChargebackRefund = () => {
   ];
 
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <MainContentHeader title="Chargeback - Refunds" />
       <div
         style={{
@@ -119,11 +117,7 @@ const ChargebackRefund = () => {
           <Select.Option value="Chargeback">Chargeback</Select.Option>
           <Select.Option value="Refund">Refund</Select.Option>
         </Select>
-
-        <Paragraph style={{ margin: 0 }}>Date : </Paragraph>
-        <div>
-          <RangePicker />
-        </div>
+        <RangePicker />
       </div>
       <AntdTable dataSource={dataSource} columns={columns} />
     </div>

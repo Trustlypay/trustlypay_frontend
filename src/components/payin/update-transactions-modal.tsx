@@ -18,12 +18,7 @@ const UpdateTransactionsModal: React.FC = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <div className="display-flex">
         <Button type="primary" onClick={showModal}>
           Open Modal
         </Button>

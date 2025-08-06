@@ -9,7 +9,7 @@ const Payin = () => {
   const [checked, setChecked] = useState(true);
   const navigate = useNavigate();
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <div className="section-header">
         <div className="playfair-display">Pay In</div>
         <div className="sub-route-items">

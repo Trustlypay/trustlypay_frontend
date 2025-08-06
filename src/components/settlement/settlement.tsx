@@ -75,7 +75,7 @@ const columns = [
 const Settlement = () => {
   const navigate = useNavigate();
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <div className="section-header">
         <div className="playfair-display">Settlement</div>
         <div className="sub-route-items">

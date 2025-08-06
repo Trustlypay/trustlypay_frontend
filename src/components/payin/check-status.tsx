@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import MainContentHeader from "../common/main-content-header";
 
 const columns = [
@@ -51,8 +51,12 @@ const columns = [
 
 const CheckStatus = () => {
   return (
-    <div className="main">
-      <MainContentHeader title="Check Status" /> <Table columns={columns} />
+    <div className="main scrollbar">
+      <MainContentHeader title="Check Status" />
+      <div className="display-flex">
+        <Button type="primary">Check Status</Button>
+      </div>
+      <Table columns={columns} />
     </div>
   );
 };

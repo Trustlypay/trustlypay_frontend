@@ -39,7 +39,7 @@ const columns = [
 
 const Dashboard = () => {
   return (
-    <div className="main">
+    <div className="main scrollbar">
       <div className="welcome playfair-display">I Welcome, Kiran</div>
       <div className="pay-in">
         <div className="pay-in-overview-section">
