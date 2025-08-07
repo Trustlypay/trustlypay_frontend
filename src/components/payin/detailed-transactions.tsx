@@ -58,12 +58,12 @@ const DetailedTransactions = () => {
   const [filters, setFilters] = useState<Record<string, FilterValue | null>>();
 
   useEffect(() => {
-    const merchantName = searchParams.get("merchnat-name")?.toString();
+    const merchantName = searchParams.get("merchant-name")?.toString();
     setFilters({
       ...filters,
       Merchant: merchantName ? [merchantName] : [],
     });
-  }, [searchParams.get("merchnat-name")]);
+  }, [searchParams.get("merchant-name")]);
 
   const columns = [
     {

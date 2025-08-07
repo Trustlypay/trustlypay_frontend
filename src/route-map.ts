@@ -21,6 +21,12 @@ enum routeMapMini {
   payoutDetailedTransactions = "/payout/detailed-transactions",
   accounts = "/payout/accounts",
   statement = "/payout/statement",
+  merchantManagementStep1 = "/merchant-management-step1",
+  merchantManagementStep2 = "/merchant-management-step2",
+  merchantManagementStep3 = "/merchant-management-step3",
+  merchantManagementStep4 = "/merchant-management-step4",
+  merchantManagementStep5 = "/merchant-management-step5",
+  merchantManagementStep6 = "/merchant-management-step6",
 }
 
 export { routeMapMini };

@@ -68,6 +68,30 @@ const Accounts = React.lazy(
 const Statement = React.lazy(
   async () => await import("./components/payout/statement")
 );
+const MerchantManagementStep1 = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-management-step1")
+);
+const MerchantManagementStep2 = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-management-step2")
+);
+const MerchantManagementStep3 = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-management-step3")
+);
+const MerchantManagementStep4 = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-management-step4")
+);
+const MerchantManagementStep5 = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-management-step5")
+);
+const MerchantManagementStep6 = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-management-step6")
+);
 
 function AppRoutes() {
   return (
@@ -246,6 +270,54 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <Statement />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantManagementStep1}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantManagementStep1 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantManagementStep2}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantManagementStep2 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantManagementStep3}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantManagementStep3 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantManagementStep4}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantManagementStep4 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantManagementStep5}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantManagementStep5 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantManagementStep6}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantManagementStep6 />
           </Suspense>
         }
       ></Route>

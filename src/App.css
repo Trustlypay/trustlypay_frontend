@@ -130,3 +130,23 @@
         scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
 }
+
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 18px;
+}
+
+.manrope-24 {
+    font-family: Manrope;
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+}
+
+.playfair-display-24 {
+    font-family: Playfair Display;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+}

@@ -39,7 +39,7 @@ const SummarizedTransactionsTable = ({
       dataIndex: "Merchant Name",
       key: "Merchant Name",
       render: (value: string) => (
-        <NavLink to={`${navigateTo}?merchnat-name=${value}`}>{value}</NavLink>
+        <NavLink to={`${navigateTo}?merchant-name=${value}`}>{value}</NavLink>
       ),
     },
     {

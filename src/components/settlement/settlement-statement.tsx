@@ -88,7 +88,7 @@ const SettlementStatement = () => {
       <MainContentHeader
         title="Settlement Statement"
         breadcrumb={`/settlement/${searchParams
-          .get("merchnat-name")
+          .get("merchant-name")
           ?.toString()} statement`}
       />
       <div

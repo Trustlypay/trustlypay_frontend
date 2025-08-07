@@ -32,7 +32,7 @@ const columns = [
     key: "Merchant Name",
     render: (value: string) => (
       <NavLink
-        to={`${routeMapMini.settlementStatement}?merchnat-name=${value}`}
+        to={`${routeMapMini.settlementStatement}?merchant-name=${value}`}
       >
         {value}
       </NavLink>
