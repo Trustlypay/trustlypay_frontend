@@ -32,7 +32,7 @@ const MerchantManagementStep1 = () => {
       <Form
         style={{
           margin: "0px auto",
-          minWidth: "600px",
+          minWidth: "800px",
           display: "flex",
           flexDirection: "column",
           gap: "18px",
@@ -146,8 +146,8 @@ const MerchantManagementStep1 = () => {
             ]}
           >
             <Input
-              maxLength={6}
               placeholder="Enter Pincode"
+              maxLength={6}
               onInput={(e) => {
                 // optional: remove non-digit chars
                 e.currentTarget.value = e.currentTarget.value.replace(
@@ -193,11 +193,21 @@ const MerchantManagementStep1 = () => {
             validateFirst
             rules={[
               { required: true },
-              { required: true, min: 3 },
+              {
+                pattern: /^([A-Z]){3}C([A-Z])([0-9]){4}([A-Z]){1}?$/,
+                message: "Enter Valid Business PAN Number",
+              },
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Enter Business PAN Number" />
+            <Input
+              placeholder="Enter Business PAN Number"
+              maxLength={10}
+              onChange={(e) => {
+                const value = e.target.value.toUpperCase();
+                form.setFieldsValue({ businessPANNumber: value });
+              }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -206,7 +216,11 @@ const MerchantManagementStep1 = () => {
             validateFirst
             rules={[
               { required: true },
-              { required: true, min: 3 },
+              {
+                pattern:
+                  /[0-9]{2}[A-Z]{3}[ABCFGHLJPTE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}/,
+                message: "Enter Valid Business GST Number",
+              },
               { whitespace: true },
             ]}
           >
@@ -299,12 +313,26 @@ const MerchantManagementStep1 = () => {
             name="reEnterBankAccountNumber"
             validateFirst
             rules={[
-              { required: true },
-              { required: true, min: 3 },
+              {
+                required: true,
+                message: "Please confirm your Bank Account Number.",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("bankAccountNumber") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error(
+                      "The Bank Account Number that you entered do not match!"
+                    )
+                  );
+                },
+              }),
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Re-Enter Bank Account Number" />
+            <Input.Password placeholder="Re-Enter Bank Account Number" />
           </Form.Item>
         </div>
 
@@ -329,11 +357,29 @@ const MerchantManagementStep1 = () => {
             validateFirst
             rules={[
               { required: true },
-              { required: true, min: 3 },
+              {
+                validator: (_, value) => {
+                  if (value.toString().length !== 10) {
+                    return Promise.reject(
+                      "Contact Number must be exactly 10 digits"
+                    );
+                  }
+                  return Promise.resolve();
+                },
+              },
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Enter Auth Sign Contact Number" />
+            <Input
+              placeholder="Enter Auth Sign Contact Number"
+              maxLength={10}
+              onInput={(e) => {
+                e.currentTarget.value = e.currentTarget.value.replace(
+                  /\D/g,
+                  ""
+                );
+              }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -342,11 +388,21 @@ const MerchantManagementStep1 = () => {
             validateFirst
             rules={[
               { required: true },
-              { required: true, min: 3 },
+              {
+                pattern: /^([A-Z]){3}P([A-Z])([0-9]){4}([A-Z]){1}?$/,
+                message: "Enter Valid Auth Sign PAN Number",
+              },
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Auth Sign PAN Number" />
+            <Input
+              placeholder="Auth Sign PAN Number"
+              maxLength={10}
+              onChange={(e) => {
+                const value = e.target.value.toUpperCase();
+                form.setFieldsValue({ authSignPANNumber: value });
+              }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -355,11 +411,29 @@ const MerchantManagementStep1 = () => {
             validateFirst
             rules={[
               { required: true },
-              { required: true, min: 3 },
+              {
+                validator: (_, value) => {
+                  if (value.toString().length !== 12) {
+                    return Promise.reject(
+                      "AADHAR Number must be exactly 12 digits"
+                    );
+                  }
+                  return Promise.resolve();
+                },
+              },
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Auth Sign AADHAR Number" />
+            <Input
+              placeholder="Auth Sign AADHAR Number"
+              maxLength={12}
+              onInput={(e) => {
+                e.currentTarget.value = e.currentTarget.value.replace(
+                  /\D/g,
+                  ""
+                );
+              }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -368,7 +442,7 @@ const MerchantManagementStep1 = () => {
             validateFirst
             rules={[
               { required: true },
-              { required: true, min: 3 },
+              { type: "email" },
               { whitespace: true },
             ]}
           >
@@ -381,11 +455,39 @@ const MerchantManagementStep1 = () => {
             validateFirst
             rules={[
               { required: true },
-              { required: true, min: 3 },
+              {
+                validator(_, value) {
+                  if (!value) return Promise.resolve();
+                  if (value.length < 8) {
+                    return Promise.reject(
+                      "Password must be at least 8 characters long"
+                    );
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                    return Promise.reject(
+                      "Must contain at least one uppercase letter"
+                    );
+                  }
+                  if (!/[a-z]/.test(value)) {
+                    return Promise.reject(
+                      "Must contain at least one lowercase letter"
+                    );
+                  }
+                  if (!/[0-9]/.test(value)) {
+                    return Promise.reject("Must contain at least one number");
+                  }
+                  if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+                    return Promise.reject(
+                      "Must contain at least one special character"
+                    );
+                  }
+                  return Promise.resolve();
+                },
+              },
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Dashboard Password" />
+            <Input.Password placeholder="Dashboard Password" />
           </Form.Item>
         </div>
 

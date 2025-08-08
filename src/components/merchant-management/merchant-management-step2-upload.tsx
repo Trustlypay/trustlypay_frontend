@@ -9,7 +9,7 @@ import {
 import WhiteBorder from "../common/white-border";
 import MerchantSteps from "../common/merchant-steps";
 
-const MerchantManagementStep2 = () => {
+const MerchantManagementStep2Upload = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { message } = App.useApp();
@@ -63,100 +63,97 @@ const MerchantManagementStep2 = () => {
         <div className="form-grid-2">
           <Form.Item
             name="comapnyPANCard"
-            label="Comapny PAN Card"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>Upload Comapny PAN Card</Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="comapnyGST"
-            label="Comapny GST"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>Upload Comapny GST</Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="bankStatement"
-            label="Bank Statement"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>Upload Bank Statement</Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="cancelledCheque"
-            label="Cancelled Cheque"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>Upload Cancelled Cheque</Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="certificationofIncorporation"
-            label="Certification of Incorporation"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>
+                Upload Certification of Incorporation
+              </Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="moa"
-            label="MOA"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>Upload MOA</Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="aoa"
-            label="AOA"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>Upload AOA</Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="authSignPANCard"
-            label="Auth Sign PAN Card"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>
+                Upload Auth Sign PAN Card
+              </Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
             name="authSignAadharCard"
-            label="Auth Sign AADHAR Card"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Click to upload</Button>
+              <Button icon={<UploadOutlined />}>
+                Upload Auth Sign AADHAR Card
+              </Button>
             </Upload>
           </Form.Item>
         </div>
@@ -190,4 +187,4 @@ const MerchantManagementStep2 = () => {
   );
 };
 
-export default MerchantManagementStep2;
+export default MerchantManagementStep2Upload;
