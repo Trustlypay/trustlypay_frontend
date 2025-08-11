@@ -62,22 +62,22 @@ const MerchantManagementStep2Upload = () => {
       >
         <div className="form-grid-2">
           <Form.Item
-            name="comapnyPANCard"
+            name="companyPANCard"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Upload Comapny PAN Card</Button>
+              <Button icon={<UploadOutlined />}>Upload Company PAN Card</Button>
             </Upload>
           </Form.Item>
 
           <Form.Item
-            name="comapnyGST"
+            name="companyGST"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
             <Upload name="logo" action="/upload.do" maxCount={1}>
-              <Button icon={<UploadOutlined />}>Upload Comapny GST</Button>
+              <Button icon={<UploadOutlined />}>Upload Company GST</Button>
             </Upload>
           </Form.Item>
 
@@ -102,7 +102,7 @@ const MerchantManagementStep2Upload = () => {
           </Form.Item>
 
           <Form.Item
-            name="certificationofIncorporation"
+            name="certificateofIncorporation"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >

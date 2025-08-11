@@ -29,7 +29,7 @@ const MerchantSteps = () => {
             }}
             showInfo={false}
             strokeColor={"#1F3F0A"}
-            size={{ width: 500, height: 1 }}
+            size={{ width: 500, height: 3 }}
           />
         </div>
       </div>

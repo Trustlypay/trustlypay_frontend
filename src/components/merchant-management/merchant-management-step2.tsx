@@ -62,8 +62,8 @@ const MerchantManagementStep2 = () => {
       >
         <div className="form-grid-2">
           <Form.Item
-            name="comapnyPANCard"
-            label="Comapny PAN Card"
+            name="companyPANCard"
+            label="Company PAN Card"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
@@ -73,8 +73,8 @@ const MerchantManagementStep2 = () => {
           </Form.Item>
 
           <Form.Item
-            name="comapnyGST"
-            label="Comapny GST"
+            name="companyGST"
+            label="Company GST"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
@@ -106,8 +106,8 @@ const MerchantManagementStep2 = () => {
           </Form.Item>
 
           <Form.Item
-            name="certificationofIncorporation"
-            label="Certification of Incorporation"
+            name="certificateofIncorporation"
+            label="Certificate of Incorporation"
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >

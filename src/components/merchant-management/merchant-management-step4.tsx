@@ -49,9 +49,9 @@ const MerchantManagementStep4 = () => {
         }}
       >
         <div className="form-grid-2">
-          <Form.Item label="DC visa" name="dcvisa">
+          <Form.Item label="DC Visa" name="DC Visa">
             <Input
-              placeholder="Enter DC visa Rate"
+              placeholder="Enter DC Visa Rate"
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
                   .replace(/[^0-9.]/g, "")
@@ -60,9 +60,9 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="CC visa" name="ccvisa">
+          <Form.Item label="CC Visa" name="CC Visa">
             <Input
-              placeholder="Enter CC visa Rate"
+              placeholder="Enter CC Visa Rate"
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
                   .replace(/[^0-9.]/g, "")
@@ -71,7 +71,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="DC Master" name="dcmaster">
+          <Form.Item label="DC Master" name="DC Master">
             <Input
               placeholder="Enter DC Master Rate"
               onInput={(e) => {
@@ -82,7 +82,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="CC Master" name="ccmaster">
+          <Form.Item label="CC Master" name="CC Master">
             <Input
               placeholder="Enter CC Master Rate"
               onInput={(e) => {
@@ -93,7 +93,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="DC Rupay" name="dcrupay">
+          <Form.Item label="DC Rupay" name="DC Rupay">
             <Input
               placeholder="Enter DC Rupay Rate"
               onInput={(e) => {
@@ -104,7 +104,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="CC Rupay" name="ccrupay">
+          <Form.Item label="CC Rupay" name="CC Rupay">
             <Input
               placeholder="Enter CC Rupay Rate"
               onInput={(e) => {
@@ -115,9 +115,9 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="AMEX" name="amex">
+          <Form.Item label="AMEX" name="AMEX">
             <Input
-              placeholder="Enter Amex Rate"
+              placeholder="Enter AMEX Rate"
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
                   .replace(/[^0-9.]/g, "")
@@ -126,9 +126,9 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="UPI" name="upi">
+          <Form.Item label="UPI" name="UPI">
             <Input
-              placeholder="Enter CC Rupay Rate"
+              placeholder="Enter UPI Rate"
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
                   .replace(/[^0-9.]/g, "")
@@ -140,7 +140,7 @@ const MerchantManagementStep4 = () => {
 
         <div className="manrope-24">Net Banking</div>
         <div className="form-grid-2">
-          <Form.Item label="SBI" name="sbi">
+          <Form.Item label="SBI" name="SBI">
             <Input
               placeholder="Enter SBI Rate"
               onInput={(e) => {
@@ -151,7 +151,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="HDFC" name="hdfc">
+          <Form.Item label="HDFC" name="HDFC">
             <Input
               placeholder="Enter HDFC Rate"
               onInput={(e) => {
@@ -162,7 +162,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="AXIS" name="axis">
+          <Form.Item label="AXIS" name="AXIS">
             <Input
               placeholder="Enter AXIS Rate"
               onInput={(e) => {
@@ -173,7 +173,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="ICICI" name="icici">
+          <Form.Item label="ICICI" name="ICICI">
             <Input
               placeholder="Enter ICICI Rate"
               onInput={(e) => {
@@ -184,7 +184,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="Yes/Kotak" name="yes/kotak">
+          <Form.Item label="Yes/Kotak" name="Yes/Kotak">
             <Input
               placeholder="Enter Yes/Kotak Rate"
               onInput={(e) => {
@@ -195,7 +195,7 @@ const MerchantManagementStep4 = () => {
             />
           </Form.Item>
 
-          <Form.Item label="Others" name="others">
+          <Form.Item label="Others" name="Others">
             <Input
               placeholder="Enter Others Rate"
               onInput={(e) => {
