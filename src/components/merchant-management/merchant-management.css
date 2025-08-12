@@ -1,0 +1,89 @@
+.merchant-sub-route {
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+}
+
+.grid-4 {
+    height: 342px;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 0px 2px
+}
+
+.merchant-card {
+    height: 138px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: #ADE28A;
+    box-shadow: 4px 4px 16px 0px #00000040;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.merchant-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #11110F;
+}
+
+.merchant-display-flex {
+    display: flex;
+    gap: 5px;
+    align-items: center
+}
+
+.merchant-initial-letter {
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #26B24B;
+    font-weight: 400;
+    font-family: Playfair Display;
+    font-size: 25px;
+    box-shadow: 4px 4px 16px 0px #00000040;
+}
+
+.merchant-name {
+    font-weight: 700;
+    width: 170px;
+}
+
+.status {
+    width: 54px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    background: #ADE28A;
+    box-shadow: 1px 1px 2px 0px #86BD61, -1px -1px 2px 0px #D9FFBF;
+}
+
+
+.live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #6EB83D;
+}
+
+.test-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #EFA00B;
+}
+
+.live-color {
+    color: #6EB83D;
+}
+
+.test-color {
+    color: #EFA00B;
+}
+
+.merchant-id-font-weight {
+    font-weight: 700;
+}

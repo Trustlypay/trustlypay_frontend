@@ -27,6 +27,8 @@ enum routeMapMini {
   merchantManagementStep4 = "/merchant-management-step4",
   merchantManagementStep5 = "/merchant-management-step5",
   merchantManagementStep6 = "/merchant-management-step6",
+  merchantDetailsPage = "/merchant-management/merchant-details-page",
+  merchantRoutingConfig = "/merchant-management/merchant-routing-config",
 }
 
 export { routeMapMini };

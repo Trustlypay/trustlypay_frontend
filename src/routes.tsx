@@ -92,6 +92,14 @@ const MerchantManagementStep6 = React.lazy(
   async () =>
     await import("./components/merchant-management/merchant-management-step6")
 );
+const MerchantDetailsPage = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-details-page")
+);
+const MerchantRoutingConfig = React.lazy(
+  async () =>
+    await import("./components/merchant-management/merchant-routing-config")
+);
 
 function AppRoutes() {
   return (
@@ -318,6 +326,22 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <MerchantManagementStep6 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantDetailsPage}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantDetailsPage />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.merchantRoutingConfig}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <MerchantRoutingConfig />
           </Suspense>
         }
       ></Route>
