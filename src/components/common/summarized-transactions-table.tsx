@@ -1,42 +1,21 @@
 import { Table } from "antd";
 import { NavLink } from "react-router-dom";
 
-const dataSource = [
-  {
-    "Merchant Name": "Peshot Info System",
-    "Merchant ID": "TP-2021",
-    "# Success": 32,
-    "# Failed": 9,
-    "# Pending": 1,
-    "Success Amount": "₹ " + Number(420000).toLocaleString("en-IN"),
-    "Failed Amount": "₹ " + Number(9000).toLocaleString("en-IN"),
-    "Pending Amount": "₹ " + Number(1000).toLocaleString("en-IN"),
-    "Success %": "10%",
-  },
-  {
-    "Merchant Name": "TrustlyPay",
-    "Merchant ID": "TP-2025",
-    "# Success": 42,
-    "# Failed": 90,
-    "# Pending": 0,
-    "Success Amount": "₹ " + Number(4200).toLocaleString("en-IN"),
-    "Failed Amount": "₹ " + Number(900).toLocaleString("en-IN"),
-    "Pending Amount": "₹ " + Number(1000).toLocaleString("en-IN"),
-    "Success %": "1%",
-  },
-];
-
 const SummarizedTransactionsTable = ({
   checked,
   navigateTo,
+  dataSource,
+  isLoading,
 }: {
   checked: boolean;
   navigateTo: string;
+  dataSource?: any[];
+  isLoading: boolean;
 }) => {
   const columns = [
     {
       title: "Merchant Name",
-      dataIndex: "Merchant Name",
+      dataIndex: "name",
       key: "Merchant Name",
       render: (value: string) => (
         <NavLink to={`${navigateTo}?merchant-name=${value}`}>{value}</NavLink>
@@ -44,47 +23,52 @@ const SummarizedTransactionsTable = ({
     },
     {
       title: "Merchant ID",
-      dataIndex: "Merchant ID",
+      dataIndex: "merchant_gid",
       key: "Merchant ID",
     },
     {
       title: "# Success",
-      dataIndex: "# Success",
+      dataIndex: "success_count",
       key: "# Success",
     },
     {
       title: "# Failed",
-      dataIndex: "# Failed",
+      dataIndex: "failed_count",
       key: "# Failed",
     },
     {
       title: "# Pending",
-      dataIndex: "# Pending",
+      dataIndex: "pending_count",
       key: "# Pending",
     },
     {
       title: "Success Amount",
-      dataIndex: "Success Amount",
+      dataIndex: "success_amount",
       key: "Success Amount",
+      render: (value: number) => "₹ " + value.toLocaleString("en-IN"),
     },
     {
       title: "Failed Amount",
-      dataIndex: "Failed Amount",
+      dataIndex: "failed_amount",
       key: "Failed Amount",
+      render: (value: number) => "₹ " + value.toLocaleString("en-IN"),
     },
     {
       title: "Pending Amount",
-      dataIndex: "Pending Amount",
+      dataIndex: "pending_amount",
       key: "Pending Amount",
+      render: (value: number) => "₹ " + value.toLocaleString("en-IN"),
     },
     {
       title: "Success %",
-      dataIndex: "Success %",
+      dataIndex: "success_percentage",
       key: "Success %",
     },
   ];
+
   return (
     <Table
+      loading={isLoading}
       dataSource={dataSource}
       columns={
         checked

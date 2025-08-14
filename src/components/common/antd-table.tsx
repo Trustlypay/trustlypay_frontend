@@ -55,9 +55,6 @@ function AntdTable<RecordType extends object = any>({
         pagination={
           pagination !== false
             ? {
-                showSizeChanger: false,
-                size: "small",
-                simple: true,
                 ...pagination,
               }
             : false

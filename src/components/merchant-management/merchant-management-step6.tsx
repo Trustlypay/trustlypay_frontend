@@ -53,6 +53,7 @@ const MerchantManagementStep6 = () => {
             label="Merchant Services"
             name="Merchant Services"
             layout="horizontal"
+            className="display-flex-justify-content-center"
           >
             <Checkbox.Group options={["PayIn", "PayOut", "PennyDrop"]} />
           </Form.Item>

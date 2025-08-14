@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { routeMapMini } from "./route-map";
 import { App as AntdApp } from "antd";
+import ReactQueryClient from "./queryclient";
 
 function App() {
   const navigate = useNavigate();
@@ -32,24 +33,26 @@ function App() {
   return (
     <div className="app">
       <AntdApp component={false}>
-        <ConfigProvider
-          theme={{
-            token: {
-              fontFamily: "Manrope",
-              colorPrimary: "#26B24B",
-            },
-            algorithm: [theme.darkAlgorithm],
-            components: { Form: { verticalLabelPadding: "0" } },
-          }}
-        >
-          <div className="initial-screen">
-            {token && <Header />}
-            <section className="sidebar-main">
-              {token && <Sidebar />}
-              <AppRoutes />
-            </section>
-          </div>
-        </ConfigProvider>
+        <ReactQueryClient>
+          <ConfigProvider
+            theme={{
+              token: {
+                fontFamily: "Manrope",
+                colorPrimary: "#26B24B",
+              },
+              algorithm: [theme.darkAlgorithm],
+              components: { Form: { verticalLabelPadding: "0" } },
+            }}
+          >
+            <div className="initial-screen">
+              {token && <Header />}
+              <section className="sidebar-main">
+                {token && <Sidebar />}
+                <AppRoutes />
+              </section>
+            </div>
+          </ConfigProvider>
+        </ReactQueryClient>
       </AntdApp>
     </div>
   );

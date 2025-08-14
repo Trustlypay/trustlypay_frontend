@@ -53,7 +53,7 @@ const MerchantManagementStep5 = () => {
             label="Price Type"
             name="pricetype"
             layout="horizontal"
-            labelCol={{ span: 10 }}
+            className="display-flex-justify-content-center"
           >
             <Radio.Group value="inline">
               <Radio value="Percentage">Percentage</Radio>

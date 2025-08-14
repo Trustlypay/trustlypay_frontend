@@ -1,5 +1,4 @@
 import { Typography, type InputRef } from "antd";
-import dayjs from "dayjs";
 import "./detailed-transactions.css";
 import RangePicker from "../common/range-picker";
 import { useEffect, useRef, useState } from "react";
@@ -9,39 +8,22 @@ import MainContentHeader from "../common/main-content-header";
 import { useSearchParams } from "react-router-dom";
 import type { FilterValue } from "antd/es/table/interface";
 import AntdTable from "../common/antd-table";
+import { useDetailedTxnSummary } from "../../services/payin/payin.service.hook";
+import type { IDetailedTxnSummary } from "../../services/payin/interface/detailed-txn-summary.interface";
+import { StatusNames } from "./enums/status-names.enum";
+import dayjs from "dayjs";
+import { capitalizeFirstLetter } from "../../utils/first-letter-cap";
 
 const { Paragraph } = Typography;
 
-interface IPayin {
-  TimeStamp: string;
-  "Created Time": string;
-  "User Name": string;
-  Amount: string;
-  "Transaction ID": string;
-  UTR: string;
-  UDF1: string;
-  Merchant: string;
-  Status: string;
-}
-
-const status = ["Success", "Pending", "Failed"];
-const merchants = ["Peshot Info System", "TrustlyPay"];
-const dataSource = Array.from({ length: 500 }).map<IPayin>((_, i) => ({
-  TimeStamp: dayjs().add(i, "s").format("YYYY-MM-DD HH:mm:ss"),
-  "Created Time": dayjs()
-    .add(i + 1, "s")
-    .format("YYYY-MM-DD HH:mm:ss"),
-  "User Name": "Kiran Reddy",
-  Amount: Math.floor(Math.random() * 100000).toLocaleString("en-IN"),
-  "Transaction ID": "TPcO1qyEQJhpgP" + i * 10,
-  UTR: Math.floor(Math.random() * 1000000000000).toString(),
-  UDF1: Math.floor(Math.random() * 10000000000).toString(),
-  Merchant: merchants[Math.floor(Math.random() * merchants.length)],
-  Status: status[Math.floor(Math.random() * status.length)],
-}));
-
 const DetailedTransactions = () => {
   const [searchParams] = useSearchParams();
+  const [fromDate, setFromDate] = useState(
+    dayjs().startOf("day").format("YYYY-MM-DD HH:mm:ss")
+  );
+  const [toDate, setToDate] = useState(
+    dayjs().endOf("day").format("YYYY-MM-DD HH:mm:ss")
+  );
 
   const [searchTransactionIDText, setSearchTransactionIDText] = useState("");
   const [searchedTransactionID, setSearchedTransactionID] = useState("");
@@ -56,6 +38,16 @@ const DetailedTransactions = () => {
   const searchUDF1 = useRef<InputRef>(null);
 
   const [filters, setFilters] = useState<Record<string, FilterValue | null>>();
+  const [total, setTotal] = useState(500);
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  const { data, isLoading } = useDetailedTxnSummary(
+    fromDate,
+    toDate,
+    current,
+    pageSize
+  );
 
   useEffect(() => {
     const merchantName = searchParams.get("merchant-name")?.toString();
@@ -68,37 +60,48 @@ const DetailedTransactions = () => {
   const columns = [
     {
       title: "TimeStamp",
-      dataIndex: "TimeStamp",
+      dataIndex: "transaction_date",
       key: "TimeStamp",
+      align: "center",
+      render: (value: Date) => (
+        <div>{value ? dayjs(value).format("DD-MM-YYYY HH:mm:ss") : "-"}</div>
+      ),
     },
     {
       title: "Created Time",
-      dataIndex: "Created Time",
+      dataIndex: "created_date",
       key: "Created Time",
+      align: "center",
+      render: (value: Date) => (
+        <div>{value ? dayjs(value).format("DD-MM-YYYY HH:mm:ss") : "-"} </div>
+      ),
     },
     {
       title: "User Name",
-      dataIndex: "User Name",
+      dataIndex: "transaction_username",
       key: "User Name",
+      align: "center",
     },
     {
       title: "Amount",
-      dataIndex: "Amount",
+      dataIndex: "transaction_amount",
       key: "Amount",
+      align: "center",
       render: (value: string) => <div>{"₹ " + value}</div>,
     },
     {
       title: "Transaction ID",
-      dataIndex: "Transaction ID",
+      dataIndex: "transaction_gid",
       key: "Transaction ID",
+      align: "center",
       ...getColumnSearchProps(
-        "Transaction ID",
+        "transaction_gid",
         searchTransactionID,
         setSearchTransactionIDText,
         setSearchedTransactionID
       ),
       render: (value: any) => {
-        const isSearched = searchedTransactionID === "Transaction ID";
+        const isSearched = searchedTransactionID === "transaction_gid";
         const highlightedText = isSearched ? (
           <Highlighter
             highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
@@ -120,39 +123,43 @@ const DetailedTransactions = () => {
     },
     {
       title: "UTR",
-      dataIndex: "UTR",
+      dataIndex: "bank_ref_no",
       key: "UTR",
+      align: "center",
       ...getColumnSearchProps(
-        "UTR",
+        "bank_ref_no",
         searchUTR,
         setSearchUTRText,
         setSearchedUTR
       ),
       render: (value: string) =>
-        searchedUTR === "UTR" ? (
+        searchedUTR === "bank_ref_no" ? (
           <Highlighter
             highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
             searchWords={[searchUTRText]}
             autoEscape
             textToHighlight={value ? value.toString() : ""}
           />
-        ) : (
+        ) : value ? (
           value
+        ) : (
+          "-"
         ),
       filteredValue: filters?.UTR || null,
     },
     {
       title: "UDF1",
-      dataIndex: "UDF1",
+      dataIndex: "udf1",
       key: "UDF1",
+      align: "center",
       ...getColumnSearchProps(
-        "UDF1",
+        "udf1",
         searchUDF1,
         setSearchUDF1Text,
         setSearchedUDF1
       ),
       render: (value: string) =>
-        searchedUDF1 === "UDF1" ? (
+        searchedUDF1 === "udf1" ? (
           <Highlighter
             highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
             searchWords={[searchUDF1Text]}
@@ -166,38 +173,52 @@ const DetailedTransactions = () => {
     },
     {
       title: "Merchant",
-      dataIndex: "Merchant",
+      dataIndex: "merchant_name",
       key: "Merchant",
-      filters: [...new Set(dataSource.map((item) => item.Merchant))].map(
+      align: "center",
+      filters: [...new Set(data?.map((item) => item.merchant_name))].map(
         (item) => {
           return { text: item, value: item };
         }
       ),
       filterSearch: true,
-      onFilter: (value: boolean | React.Key, record: IPayin) =>
-        record.Merchant === (value as string),
+      onFilter: (value: boolean | React.Key, record: IDetailedTxnSummary) =>
+        record.merchant_name === (value as string),
       filteredValue: filters?.Merchant || null,
     },
     {
       title: "Status",
-      dataIndex: "Status",
+      dataIndex: "transaction_status",
       key: "Status",
+      align: "center",
       render: (value: any) => {
         switch (value) {
-          case "Success":
-            return <div className="status success-status-color">{value}</div>;
-          case "Pending":
-            return <div className="status pending-status-color">{value}</div>;
-          case "Failed":
-            return <div className="status failed-status-color">{value}</div>;
+          case StatusNames.Success:
+            return (
+              <div className="status success-status-color">
+                {capitalizeFirstLetter(value)}
+              </div>
+            );
+          case StatusNames.Pending:
+            return (
+              <div className="status pending-status-color">
+                {capitalizeFirstLetter(value)}
+              </div>
+            );
+          case StatusNames.Failed:
+            return (
+              <div className="status failed-status-color">
+                {capitalizeFirstLetter(value)}
+              </div>
+            );
         }
       },
-      filters: status.map((item) => {
-        return { text: item, value: item };
+      filters: Object.entries(StatusNames).map(([key, value]) => {
+        return { text: key, value: value };
       }),
       filterSearch: true,
-      onFilter: (value: boolean | React.Key, record: IPayin) => {
-        return record.Status === (value as string);
+      onFilter: (value: boolean | React.Key, record: IDetailedTxnSummary) => {
+        return record.transaction_status === (value as string);
       },
       filteredValue: filters?.Status || null,
     },
@@ -206,12 +227,26 @@ const DetailedTransactions = () => {
   return (
     <div className="main scrollbar">
       <MainContentHeader title="Detailed Transactions" />
-      <RangePicker />
+      <RangePicker
+        fromDate={fromDate}
+        toDate={toDate}
+        setFromDate={setFromDate}
+        setToDate={setToDate}
+      />
       <AntdTable
-        dataSource={dataSource}
+        loading={isLoading}
+        dataSource={data ?? []}
         columns={columns}
-        onChange={(_pagination, filters) => {
+        onChange={(pagination, filters) => {
           setFilters(filters);
+          setTotal(pagination.total ?? total);
+          setCurrent(pagination.current ?? current);
+          setPageSize(pagination.pageSize ?? pageSize);
+        }}
+        pagination={{
+          total: total,
+          current,
+          pageSize,
         }}
       />
     </div>

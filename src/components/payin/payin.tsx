@@ -4,10 +4,13 @@ import { Switch } from "antd";
 import SummarizedTransactionsTable from "../common/summarized-transactions-table";
 import { useState } from "react";
 import WhiteBorder from "../common/white-border";
+import { useDetailedPayInSummary } from "../../services/payin/payin.service.hook";
 
 const Payin = () => {
   const [checked, setChecked] = useState(true);
   const navigate = useNavigate();
+  const { data, isLoading } = useDetailedPayInSummary();
+
   return (
     <div className="main scrollbar">
       <div className="section-header">
@@ -66,6 +69,8 @@ const Payin = () => {
         <SummarizedTransactionsTable
           checked={checked}
           navigateTo={routeMapMini.detailedTransactions}
+          dataSource={data}
+          isLoading={isLoading}
         />
       </div>
     </div>

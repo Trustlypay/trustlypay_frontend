@@ -10,9 +10,21 @@ const rangePresets: TimeRangePickerProps["presets"] = [
   { label: "Last 90 Days", value: [dayjs().add(-90, "d"), dayjs()] },
 ];
 
-const RangePicker = () => {
+const RangePicker = ({
+  fromDate,
+  toDate,
+  setFromDate,
+  setToDate,
+}: {
+  fromDate?: string;
+  toDate?: string;
+  setFromDate?: React.Dispatch<React.SetStateAction<string>>;
+  setToDate?: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const onDateChange = (_dates: any, dateStrings: [string, string]) => {
     console.log("dateStrings", dateStrings);
+    setFromDate?.(dateStrings[0]);
+    setToDate?.(dateStrings[1]);
   };
 
   return (
@@ -26,6 +38,10 @@ const RangePicker = () => {
     >
       <Paragraph style={{ margin: 0 }}>Date : </Paragraph>
       <DatePicker.RangePicker
+        value={[
+          fromDate ? dayjs(fromDate) : null,
+          toDate ? dayjs(toDate) : null,
+        ]}
         showTime
         presets={[
           {
