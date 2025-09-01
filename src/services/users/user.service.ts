@@ -13,6 +13,7 @@ export const userService = {
     const response = await AxiosX.get(`/hello`);
     return response.data;
   },
+
   currentUser: async (): Promise<string> => {
     const response = await AxiosX.get(`/auth/current-user`);
     return response.data;

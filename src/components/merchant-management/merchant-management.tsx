@@ -5,6 +5,7 @@ import "./merchant-management.css";
 import WhiteBorder from "../common/white-border";
 import dayjs from "dayjs";
 import { capitalizeFirstLetter } from "../../utils/first-letter-cap";
+import { useMerchantRoutingDetails } from "../../services/dashboard/dashboard.service.hook";
 
 const merchants = [
   {
@@ -75,47 +76,45 @@ const merchants = [
   },
 ];
 
-const dataSource = merchants.map((item) => {
-  return {
-    "Merchant ID": item.merchantId,
-    "Merchant Name": item.merchantName,
-    "UPI Route": item.merchantVendor,
-    "Created Date": dayjs().format(),
-  };
-});
-
 const MerchantManagement = () => {
   const navigate = useNavigate();
+
+  const { data, isLoading } = useMerchantRoutingDetails();
 
   const columns = [
     {
       title: "Merchant ID",
-      dataIndex: "Merchant ID",
+      dataIndex: "merchant_gid",
       key: "Merchant ID",
     },
     {
       title: "Merchant Name",
-      dataIndex: "Merchant Name",
+      dataIndex: "merchant_name",
       key: "Merchant Name",
     },
     {
       title: "UPI Route",
-      dataIndex: "UPI Route",
+      dataIndex: "bank_name",
       key: "UPI Route",
     },
     {
       title: "Created Date",
-      dataIndex: "Created Date",
+      dataIndex: "created_date",
       key: "Created Date",
+      render: (value: Date) => (
+        <div>{value ? dayjs(value).format("DD-MM-YYYY HH:mm:ss") : "-"}</div>
+      ),
     },
     {
       title: "Action",
-      dataIndex: "Action",
+      dataIndex: "merchant_gid",
       key: "Action",
-      render: () => (
+      render: (value: any) => (
         <Button
           type="primary"
-          onClick={() => navigate(routeMapMini.merchantRoutingConfig)}
+          onClick={() =>
+            navigate(`${routeMapMini.merchantRoutingConfig}?merchant=${value}`)
+          }
         >
           Edit Route
         </Button>
@@ -187,7 +186,7 @@ const MerchantManagement = () => {
           <div className="playfair-display" style={{ marginBottom: "16px" }}>
             Merchant Gateway Route
           </div>
-          <Table dataSource={dataSource} columns={columns} />
+          <Table dataSource={data} columns={columns} loading={isLoading} />
         </div>
       </div>
     </div>

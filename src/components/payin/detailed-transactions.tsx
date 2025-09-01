@@ -38,7 +38,6 @@ const DetailedTransactions = () => {
   const searchUDF1 = useRef<InputRef>(null);
 
   const [filters, setFilters] = useState<Record<string, FilterValue | null>>();
-  const [total, setTotal] = useState(500);
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
@@ -46,8 +45,17 @@ const DetailedTransactions = () => {
     fromDate,
     toDate,
     current,
-    pageSize
+    pageSize,
+    searchTransactionIDText,
+    searchUTRText,
+    searchUDF1Text
   );
+
+  const [total, setTotal] = useState(data?.total);
+
+  useEffect(() => {
+    setTotal(data?.total);
+  }, [data?.total]);
 
   useEffect(() => {
     const merchantName = searchParams.get("merchant-name")?.toString();
@@ -176,7 +184,7 @@ const DetailedTransactions = () => {
       dataIndex: "merchant_name",
       key: "Merchant",
       align: "center",
-      filters: [...new Set(data?.map((item) => item.merchant_name))].map(
+      filters: [...new Set(data?.items?.map((item) => item.merchant_name))].map(
         (item) => {
           return { text: item, value: item };
         }
@@ -235,7 +243,7 @@ const DetailedTransactions = () => {
       />
       <AntdTable
         loading={isLoading}
-        dataSource={data ?? []}
+        dataSource={data?.items ?? []}
         columns={columns}
         onChange={(pagination, filters) => {
           setFilters(filters);

@@ -4,10 +4,12 @@ import WhiteBorder from "../common/white-border";
 import { Switch } from "antd";
 import { useState } from "react";
 import SummarizedTransactionsTable from "../common/summarized-transactions-table";
+import { useDetailedPayOutSummary } from "../../services/payout/payout.service.hook";
 
 const Payout = () => {
   const [checked, setChecked] = useState(true);
   const navigate = useNavigate();
+  const { data, isLoading } = useDetailedPayOutSummary();
 
   return (
     <div className="main scrollbar">
@@ -67,8 +69,8 @@ const Payout = () => {
         <SummarizedTransactionsTable
           checked={checked}
           navigateTo={routeMapMini.payoutDetailedTransactions}
-          dataSource={[]}
-          isLoading={false}
+          dataSource={data}
+          isLoading={isLoading}
         />
       </div>
     </div>

@@ -5,39 +5,29 @@ import TransactionsGraphs from "./transactions-graphs";
 import RangePicker from "../common/range-picker";
 import SelectMerchant from "../common/select-merchant";
 import WhiteBorder from "../common/white-border";
-
-const dataSource = [
-  {
-    "Merchant ID": "TP-2021",
-    "Merchant Name": "Peshot Info System",
-    "UPI Route": "Apexio",
-  },
-  {
-    "Merchant ID": "TP-2025",
-    "Merchant Name": "TrustlyPay",
-    "UPI Route": "Apexio",
-  },
-];
+import { useMerchantRoutingDetails } from "../../services/dashboard/dashboard.service.hook";
 
 const columns = [
   {
     title: "Merchant ID",
-    dataIndex: "Merchant ID",
+    dataIndex: "merchant_gid",
     key: "Merchant ID",
   },
   {
     title: "Merchant Name",
-    dataIndex: "Merchant Name",
+    dataIndex: "merchant_name",
     key: "Merchant Name",
   },
   {
     title: "UPI Route",
-    dataIndex: "UPI Route",
+    dataIndex: "bank_name",
     key: "UPI Route",
   },
 ];
 
 const Dashboard = () => {
+  const { data, isLoading } = useMerchantRoutingDetails();
+
   return (
     <div className="main scrollbar">
       <div className="welcome playfair-display">I Welcome, Kiran</div>
@@ -66,7 +56,7 @@ const Dashboard = () => {
         <div className="pay-in-overview-section">
           <div className="playfair-display">Merchant GateWay Route</div>
         </div>
-        <Table dataSource={dataSource} columns={columns} />
+        <Table dataSource={data} columns={columns} loading={isLoading} />
       </div>
     </div>
   );

@@ -9,3 +9,11 @@ export interface IDetailedTxnSummary {
   udf1: string;
   merchant_name: string;
 }
+
+export interface Paginate<T> {
+  total: number;
+  totalPages: number;
+  pageNumber: number;
+  pageSize: number;
+  items: T;
+}

@@ -15,7 +15,7 @@ const SummarizedTransactionsTable = ({
   const columns = [
     {
       title: "Merchant Name",
-      dataIndex: "name",
+      dataIndex: "merchant_name",
       key: "Merchant Name",
       render: (value: string) => (
         <NavLink to={`${navigateTo}?merchant-name=${value}`}>{value}</NavLink>

@@ -19,7 +19,10 @@ export const useDetailedTxnSummary = (
   fromDate: string,
   toDate: string,
   pageNumber: number,
-  pageSize: number
+  pageSize: number,
+  searchTransactionIDText?: string,
+  searchUTRText?: string,
+  searchUDF1Text?: string
 ) => {
   return useQuery({
     queryKey: [
@@ -28,13 +31,19 @@ export const useDetailedTxnSummary = (
       toDate,
       pageNumber,
       pageSize,
+      searchTransactionIDText,
+      searchUTRText,
+      searchUDF1Text,
     ],
     queryFn: async () =>
       await payinService.detailedTxnSummary(
         fromDate,
         toDate,
         pageNumber,
-        pageSize
+        pageSize,
+        searchTransactionIDText,
+        searchUTRText,
+        searchUDF1Text
       ),
   });
 };
