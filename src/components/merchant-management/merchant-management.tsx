@@ -134,7 +134,7 @@ const MerchantManagement = () => {
               navigate(`${routeMapMini.merchantManagementStep1}?step=1`);
             }}
           >
-            <img src="/add-merchant.png" />
+            <img src="/add.png" />
             Add Merchant
           </button>
           <div className="display-flex">
@@ -146,12 +146,12 @@ const MerchantManagement = () => {
             ></Input.Search>
           </div>
         </div>
-        <div
-          className="grid-4 scrollbar"
-          onClick={() => navigate(routeMapMini.merchantDetailsPage)}
-        >
+        <div className="grid-4 scrollbar">
           {merchants.map((merchant) => (
-            <div className="merchant-card">
+            <div
+              className="merchant-card"
+              onClick={() => navigate(routeMapMini.merchantDetailsPage)}
+            >
               <div className="merchant-card-content">
                 <div className="merchant-display-flex">
                   <span className="merchant-initial-letter">

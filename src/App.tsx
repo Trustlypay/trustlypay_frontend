@@ -41,7 +41,10 @@ function App() {
                 colorPrimary: "#26B24B",
               },
               algorithm: [theme.darkAlgorithm],
-              components: { Form: { verticalLabelPadding: "0" } },
+              components: {
+                Form: { verticalLabelPadding: "0" },
+                Button: { defaultBorderColor: "#26B24B" },
+              },
             }}
           >
             <div className="initial-screen">

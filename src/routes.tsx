@@ -100,6 +100,9 @@ const MerchantRoutingConfig = React.lazy(
   async () =>
     await import("./components/merchant-management/merchant-routing-config")
 );
+const EditResellerRates = React.lazy(
+  async () => await import("./components/reseller/edit-reseller-rates")
+);
 
 function AppRoutes() {
   return (
@@ -342,6 +345,14 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <MerchantRoutingConfig />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.editResellerRates}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <EditResellerRates />
           </Suspense>
         }
       ></Route>

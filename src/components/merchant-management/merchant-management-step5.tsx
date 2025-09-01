@@ -35,7 +35,6 @@ const MerchantManagementStep5 = () => {
           minWidth: "600px",
           display: "flex",
           flexDirection: "column",
-          gap: "18px",
         }}
         form={form}
         layout="vertical"

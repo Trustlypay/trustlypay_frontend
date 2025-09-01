@@ -44,7 +44,7 @@ const Dashboard = () => {
       <div className="pay-in">
         <div className="pay-in-overview-section">
           <div className="playfair-display">Pay In Overview</div>
-          <div style={{ display: "flex", gap: "15px" }}>
+          <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
             <RangePicker />
             <SelectMerchant />
             <button className="update-btn">Update</button>

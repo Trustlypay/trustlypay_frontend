@@ -23,7 +23,11 @@ const MainContentHeader = ({
               </div>
             ) : (
               <div
-                style={{ fontSize: "14px", color: " #666666" }}
+                style={{
+                  fontSize: "14px",
+                  color: " #666666",
+                  cursor: "pointer",
+                }}
                 onClick={() => {
                   navigate(`/${item}`);
                 }}

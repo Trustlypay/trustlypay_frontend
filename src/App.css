@@ -151,6 +151,12 @@
     text-align: center;
 }
 
+.playfair-display-font-size-24 {
+    font-family: Playfair Display;
+    font-weight: 700;
+    font-size: 24px;
+}
+
 .display-flex-justify-content-center {
     display: flex;
     justify-content: center;

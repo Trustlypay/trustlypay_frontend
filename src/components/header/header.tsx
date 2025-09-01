@@ -42,12 +42,14 @@ const Header = () => {
         </div>
         <div className=" right-side-header-content">
           <img
+            style={{ cursor: "pointer" }}
             src="/profile-icon.svg"
             onClick={() => {
               navigate(routeMapMini.myAccount);
             }}
           />
           <img
+            style={{ cursor: "pointer" }}
             src="/logout.svg"
             onClick={() => {
               localStorage.removeItem("token");

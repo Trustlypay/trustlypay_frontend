@@ -32,10 +32,8 @@ const MerchantManagementStep6 = () => {
       <Form
         style={{
           margin: "0px auto",
-          minWidth: "300px",
           display: "flex",
           flexDirection: "column",
-          gap: "18px",
         }}
         form={form}
         layout="vertical"
@@ -48,30 +46,31 @@ const MerchantManagementStep6 = () => {
           }
         }}
       >
-        <div>
-          <Form.Item
-            label="Merchant Services"
-            name="Merchant Services"
-            layout="horizontal"
-            className="display-flex-justify-content-center"
-          >
-            <Checkbox.Group options={["PayIn", "PayOut", "PennyDrop"]} />
-          </Form.Item>
-          <div className="manrope-24">Merchant Configurations</div>
-          <Form.Item label="Vendor Configuration" name="vendorConfiguration">
-            <Select placeholder="Select Vendor Configuration"></Select>
-          </Form.Item>
+        <Form.Item
+          label="Merchant Services"
+          name="Merchant Services"
+          layout="horizontal"
+          className="display-flex-justify-content-center"
+        >
+          <Checkbox.Group options={["PayIn", "PayOut", "PennyDrop"]} />
+        </Form.Item>
 
-          <Form.Item label="UPI Gateway Route" name="UPI Gateway Route">
-            <Select placeholder="Select UPI Gateway Route"></Select>
-          </Form.Item>
+        <div className="manrope-24">Merchant Configurations</div>
 
-          <div className="manrope-24">Live Status</div>
+        <Form.Item label="Vendor Configuration" name="vendorConfiguration">
+          <Select placeholder="Select Vendor Configuration"></Select>
+        </Form.Item>
 
-          <Form.Item label="Merchant Live" name="merchantLive">
-            <Select placeholder="Select Merchant Live"></Select>
-          </Form.Item>
-        </div>
+        <Form.Item label="UPI Gateway Route" name="UPI Gateway Route">
+          <Select placeholder="Select UPI Gateway Route"></Select>
+        </Form.Item>
+
+        <div className="manrope-24">Live Status</div>
+
+        <Form.Item label="Merchant Live" name="merchantLive">
+          <Select placeholder="Select Merchant Live"></Select>
+        </Form.Item>
+
         <div
           style={{
             display: "flex",
