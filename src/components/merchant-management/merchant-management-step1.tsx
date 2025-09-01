@@ -267,7 +267,7 @@ const MerchantManagementStep1 = () => {
           </Form.Item>
         </div>
 
-        <div className="manrope-24">Bank Details</div>
+        <div className="manrope-24">Bank Account Details</div>
         <div className="form-grid-2">
           <Form.Item
             label="Bank Name"
@@ -364,6 +364,11 @@ const MerchantManagementStep1 = () => {
                       "Contact Number must be exactly 10 digits"
                     );
                   }
+                  if (
+                    !["6", "7", "8", "9"].includes(value.toString().charAt(0))
+                  ) {
+                    return Promise.reject("Enter Valid Phone Number");
+                  }
                   return Promise.resolve();
                 },
               },
@@ -396,7 +401,7 @@ const MerchantManagementStep1 = () => {
             ]}
           >
             <Input
-              placeholder="Auth Sign PAN Number"
+              placeholder="Enter Auth Sign PAN Number"
               maxLength={10}
               onChange={(e) => {
                 const value = e.target.value.toUpperCase();
@@ -425,7 +430,7 @@ const MerchantManagementStep1 = () => {
             ]}
           >
             <Input
-              placeholder="Auth Sign AADHAR Number"
+              placeholder="Enter Auth Sign AADHAR Number"
               maxLength={12}
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value.replace(
@@ -446,7 +451,7 @@ const MerchantManagementStep1 = () => {
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Auth Sign Email ID" />
+            <Input placeholder="Enter Auth Sign Email ID" />
           </Form.Item>
 
           <Form.Item
@@ -487,7 +492,7 @@ const MerchantManagementStep1 = () => {
               { whitespace: true },
             ]}
           >
-            <Input.Password placeholder="Dashboard Password" />
+            <Input.Password placeholder="Enter Dashboard Password" />
           </Form.Item>
         </div>
 

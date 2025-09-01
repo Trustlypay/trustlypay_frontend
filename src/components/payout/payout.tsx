@@ -67,6 +67,8 @@ const Payout = () => {
         <SummarizedTransactionsTable
           checked={checked}
           navigateTo={routeMapMini.payoutDetailedTransactions}
+          dataSource={[]}
+          isLoading={false}
         />
       </div>
     </div>

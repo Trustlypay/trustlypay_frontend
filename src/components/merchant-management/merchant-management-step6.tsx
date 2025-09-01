@@ -12,7 +12,7 @@ const MerchantManagementStep6 = () => {
 
   const onFinish = () => {
     void form.validateFields().then(() => {
-      message.success("Saved and proceed to next step");
+      message.success("Saved");
       navigate(routeMapMini.merchantManagement);
       console.log(form.getFieldsValue());
     });

@@ -30,6 +30,10 @@ enum routeMapMini {
   merchantDetailsPage = "/merchant-management/merchant-details-page",
   merchantRoutingConfig = "/merchant-management/merchant-routing-config",
   editResellerRates = "/reseller/edit-reseller-rates",
+  resellerStep1 = "/reseller-step1",
+  resellerStep2 = "/reseller-step2",
+  resellerStep3 = "/reseller-step3",
+  resellerStep4 = "/reseller-step4",
 }
 
 export { routeMapMini };

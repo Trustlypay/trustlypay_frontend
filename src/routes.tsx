@@ -103,6 +103,18 @@ const MerchantRoutingConfig = React.lazy(
 const EditResellerRates = React.lazy(
   async () => await import("./components/reseller/edit-reseller-rates")
 );
+const ResellerStep1 = React.lazy(
+  async () => await import("./components/reseller/reseller-step1")
+);
+const ResellerStep2 = React.lazy(
+  async () => await import("./components/reseller/reseller-step2")
+);
+const ResellerStep3 = React.lazy(
+  async () => await import("./components/reseller/reseller-step3")
+);
+const ResellerStep4 = React.lazy(
+  async () => await import("./components/reseller/reseller-step4")
+);
 
 function AppRoutes() {
   return (
@@ -353,6 +365,38 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <EditResellerRates />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.resellerStep1}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <ResellerStep1 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.resellerStep2}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <ResellerStep2 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.resellerStep3}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <ResellerStep3 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.resellerStep4}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <ResellerStep4 />
           </Suspense>
         }
       ></Route>

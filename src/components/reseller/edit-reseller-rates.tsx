@@ -147,7 +147,7 @@ const EditResellerRates = () => {
             </div>
           </div>
 
-          <div style={{ border: "0.5px solid #CFD8D7" }}></div>
+          <div style={{ borderLeft: "0.5px solid #CFD8D7" }}></div>
 
           <div>
             <div className="manrope-20px">Percentage</div>

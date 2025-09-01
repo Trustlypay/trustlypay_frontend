@@ -3,8 +3,11 @@ import MainContentHeader from "../common/main-content-header";
 import "./merchant-details-page.css";
 import WhiteBorder from "../common/white-border";
 import { EditOutlined, EyeOutlined } from "@ant-design/icons";
+import FilePreview from "./file-preview";
+import { useState } from "react";
 
 const MerchantDetailsPage = () => {
+  const [filePreview, setFilePreview] = useState(false);
   return (
     <div className="main scrollbar">
       <MainContentHeader title="PESHOT INFO SYSTEM" />
@@ -188,7 +191,7 @@ const MerchantDetailsPage = () => {
             <div className="approved">
               Approved
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
           <WhiteBorder />
@@ -199,7 +202,7 @@ const MerchantDetailsPage = () => {
             <div className="yet-to-approve">
               Yet to Approve
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
           <WhiteBorder />
@@ -210,7 +213,7 @@ const MerchantDetailsPage = () => {
             <div className="rejected">
               Rejected
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
           <WhiteBorder />
@@ -221,7 +224,7 @@ const MerchantDetailsPage = () => {
             <div className="rejected">
               Rejected
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
           <WhiteBorder />
@@ -232,7 +235,7 @@ const MerchantDetailsPage = () => {
             <div className="rejected">
               Rejected
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
           <WhiteBorder />
@@ -243,7 +246,7 @@ const MerchantDetailsPage = () => {
             <div className="rejected">
               Rejected
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
           <WhiteBorder />
@@ -254,7 +257,7 @@ const MerchantDetailsPage = () => {
             <div className="rejected">
               Rejected
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
           <WhiteBorder />
@@ -265,11 +268,16 @@ const MerchantDetailsPage = () => {
             <div className="rejected">
               Rejected
               <EditOutlined />
-              <EyeOutlined />
+              <EyeOutlined onClick={() => setFilePreview(true)} />
             </div>
           </div>
         </div>
       </div>
+      <FilePreview
+        fileTitle={"previewRecord.fileTitle"}
+        onClose={() => setFilePreview(false)}
+        filePreview={filePreview}
+      />
     </div>
   );
 };

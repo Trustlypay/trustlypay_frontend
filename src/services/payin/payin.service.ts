@@ -16,12 +16,4 @@ export const payinService = {
 
     return response.data;
   },
-
-  detailedPayInSummary: async (): Promise<any[]> => {
-    const response = await AxiosX.get(
-      `/dashboard-payin/dashboard-payin-summary`
-    );
-
-    return response.data;
-  },
 };

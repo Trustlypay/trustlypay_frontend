@@ -109,7 +109,12 @@ const Reseller = () => {
       <div className="section-header">
         <div className="playfair-display">Reseller</div>
         <div className="sub-route-items merchant-sub-route">
-          <button className="sub-route" onClick={() => {}}>
+          <button
+            className="sub-route"
+            onClick={() => {
+              navigate(`${routeMapMini.resellerStep1}?step=1`);
+            }}
+          >
             <img src="/add.png" />
             Add Reseller
           </button>
