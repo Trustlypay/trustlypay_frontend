@@ -14,7 +14,33 @@ const MerchantManagementStep1 = () => {
     void form.validateFields().then(() => {
       message.success("Saved and proceed to next step");
       navigate(`${routeMapMini.merchantManagementStep2}?step=2`);
-      console.log(form.getFieldsValue());
+      console.log(form.getFieldValue("Business Name"));
+      console.log(form.getFieldValue("Business Monthly Expenditure"));
+      console.log(form.getFieldValue("Address 1st Line"));
+      console.log(form.getFieldValue("Address 2nd Line"));
+      console.log(form.getFieldValue("City"));
+      console.log(form.getFieldValue("State"));
+      console.log(form.getFieldValue("Pincode"));
+      console.log(form.getFieldValue("Country"));
+      console.log(form.getFieldValue("Business Website"));
+
+      console.log(form.getFieldValue("Business PAN Number"));
+      console.log(form.getFieldValue("Business GST Number"));
+      console.log(form.getFieldValue("Business Type"));
+      console.log(form.getFieldValue("Business Category"));
+      console.log(form.getFieldValue("Business Sub Category"));
+
+      console.log(form.getFieldValue("Bank Name"));
+      console.log(form.getFieldValue("IFSC Code"));
+      console.log(form.getFieldValue("Bank Account Number"));
+      console.log(form.getFieldValue("Re-Enter Bank Account Number"));
+
+      console.log(form.getFieldValue("Auth Sign Name"));
+      console.log(form.getFieldValue("Auth Sign Contact Number"));
+      console.log(form.getFieldValue("Auth Sign PAN Number"));
+      console.log(form.getFieldValue("Auth Sign AADHAR Number"));
+      console.log(form.getFieldValue("Auth Sign Email ID"));
+      console.log(form.getFieldValue("Dashboard Password"));
     });
   };
 
@@ -52,8 +78,9 @@ const MerchantManagementStep1 = () => {
         <div className="form-grid-2">
           <Form.Item
             label="Business Name"
-            name="businessName"
+            name="Business Name"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -65,8 +92,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Business Monthly Expenditure"
-            name="businessMonthlyExpenditure"
+            name="Business Monthly Expenditure"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -78,8 +106,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Address 1st Line"
-            name="address1stLine"
+            name="Address 1st Line"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -91,8 +120,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Address 2nd Line"
-            name="Address2ndLine"
+            name="Address 2nd Line"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -104,8 +134,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="City"
-            name="city"
+            name="City"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -117,8 +148,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="State"
-            name="state"
+            name="State"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -130,8 +162,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Pincode"
-            name="pincode"
+            name="Pincode"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               {
@@ -162,6 +195,7 @@ const MerchantManagementStep1 = () => {
             label="Country"
             name="Country"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -173,8 +207,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Business Website"
-            name="businessWebsite"
+            name="Business Website"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -189,8 +224,9 @@ const MerchantManagementStep1 = () => {
         <div className="form-grid-2">
           <Form.Item
             label="Business PAN Number"
-            name="businessPANNumber"
+            name="Business PAN Number"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               {
@@ -212,8 +248,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Business GST Number"
-            name="businessGSTNumber"
+            name="Business GST Number"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               {
@@ -229,8 +266,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Business Type"
-            name="businessType"
+            name="Business Type"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -242,8 +280,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Business Category"
-            name="businessCategory"
+            name="Business Category"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -255,8 +294,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Business Sub Category"
-            name="businessSubCategory"
+            name="Business Sub Category"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -271,8 +311,9 @@ const MerchantManagementStep1 = () => {
         <div className="form-grid-2">
           <Form.Item
             label="Bank Name"
-            name="bankName"
+            name="Bank Name"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -284,8 +325,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="IFSC Code"
-            name="ifscCode"
+            name="IFSC Code"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -297,8 +339,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Bank Account Number"
-            name="bankAccountNumber"
+            name="Bank Account Number"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -310,8 +353,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Re-Enter Bank Account Number"
-            name="reEnterBankAccountNumber"
+            name="Re-Enter Bank Account Number"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               {
                 required: true,
@@ -340,8 +384,9 @@ const MerchantManagementStep1 = () => {
         <div className="form-grid-2">
           <Form.Item
             label="Auth Sign Name"
-            name="authSignName"
+            name="Auth Sign Name"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { required: true, min: 3 },
@@ -353,8 +398,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Auth Sign Contact Number"
-            name="authSignContactNumber"
+            name="Auth Sign Contact Number"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               {
@@ -389,8 +435,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Auth Sign PAN Number"
-            name="authSignPANNumber"
+            name="Auth Sign PAN Number"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               {
@@ -412,8 +459,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Auth Sign AADHAR Number"
-            name="authSignAADHARNumber"
+            name="Auth Sign AADHAR Number"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               {
@@ -443,8 +491,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Auth Sign Email ID"
-            name="authSignEmailID"
+            name="Auth Sign Email ID"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               { type: "email" },
@@ -456,8 +505,9 @@ const MerchantManagementStep1 = () => {
 
           <Form.Item
             label="Dashboard Password"
-            name="dashboardPassword"
+            name="Dashboard Password"
             validateFirst
+            validateTrigger="onSubmit"
             rules={[
               { required: true },
               {

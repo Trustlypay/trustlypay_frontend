@@ -149,6 +149,7 @@ const MerchantManagement = () => {
           {merchants.map((merchant) => (
             <div
               className="merchant-card"
+              // style={{ background: "#F2A85F" }}
               onClick={() => navigate(routeMapMini.merchantDetailsPage)}
             >
               <div className="merchant-card-content">

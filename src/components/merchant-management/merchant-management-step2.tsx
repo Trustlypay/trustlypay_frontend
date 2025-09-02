@@ -14,11 +14,65 @@ const MerchantManagementStep2 = () => {
   const [form] = Form.useForm();
   const { message } = App.useApp();
 
+  const beforeUpload = () => false;
+
+  const rules = [
+    {
+      required: true,
+      message: "Please upload a file!",
+    },
+    {
+      validator(_: any, fileList: string | any[]) {
+        if (!fileList || fileList.length === 0) {
+          return Promise.resolve();
+        }
+
+        for (const file of fileList) {
+          const isAllowed =
+            file.type.startsWith("image/") || file.type === "application/pdf";
+
+          if (!isAllowed) {
+            return Promise.reject(
+              new Error(`${file.name} is not a valid file type`)
+            );
+          }
+
+          const isLt5M = file.size / 1024 / 1024 < 5;
+          if (!isLt5M) {
+            return Promise.reject(
+              new Error(`${file.name} must be smaller than 5MB`)
+            );
+          }
+        }
+
+        return Promise.resolve();
+      },
+    },
+  ];
+
   const onFinish = () => {
     void form.validateFields().then(() => {
-      message.success("Saved and proceed to next step");
       navigate(`${routeMapMini.merchantManagementStep3}?step=3`);
-      console.log(form.getFieldsValue());
+      console.log("companyPANCard", form.getFieldValue("companyPANCard")[0]);
+      console.log("companyGST", form.getFieldValue("companyGST")[0]);
+
+      console.log("bankStatement", form.getFieldValue("bankStatement")[0]);
+      console.log("cancelledCheque", form.getFieldValue("cancelledCheque")[0]);
+
+      console.log(
+        "certificateofIncorporation",
+        form.getFieldValue("certificateofIncorporation")[0]
+      );
+      console.log("moa", form.getFieldValue("moa")[0]);
+
+      console.log("aoa", form.getFieldValue("aoa")[0]);
+      console.log("authSignPANCard", form.getFieldValue("authSignPANCard")[0]);
+
+      console.log(
+        "authSignAadharCard",
+        form.getFieldValue("authSignAadharCard")[0]
+      );
+      message.success("Saved and proceed to next step");
     });
   };
 
@@ -41,6 +95,9 @@ const MerchantManagementStep2 = () => {
       <MerchantSteps />
       <div className="playfair-display-24"> Merchant Documents</div>
       <WhiteBorder />
+      <div style={{ color: "#dc4446" }}>
+        Note:Pdfs & Images are only allowed up to 5mb in size
+      </div>
       <Form
         style={{
           margin: "0px auto",
@@ -66,8 +123,13 @@ const MerchantManagementStep2 = () => {
             label="Company PAN Card"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -77,8 +139,13 @@ const MerchantManagementStep2 = () => {
             label="Company GST"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -88,8 +155,13 @@ const MerchantManagementStep2 = () => {
             label="Bank Statement"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -99,8 +171,13 @@ const MerchantManagementStep2 = () => {
             label="Cancelled Cheque"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -110,8 +187,13 @@ const MerchantManagementStep2 = () => {
             label="Certificate of Incorporation"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -121,8 +203,13 @@ const MerchantManagementStep2 = () => {
             label="MOA"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -132,8 +219,13 @@ const MerchantManagementStep2 = () => {
             label="AOA"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -143,8 +235,13 @@ const MerchantManagementStep2 = () => {
             label="Auth Sign PAN Card"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
@@ -154,8 +251,13 @@ const MerchantManagementStep2 = () => {
             label="Auth Sign AADHAR Card"
             valuePropName="fileList"
             getValueFromEvent={normFile}
+            rules={rules}
           >
-            <Upload name="logo" action="/upload.do" maxCount={1}>
+            <Upload
+              beforeUpload={beforeUpload}
+              accept="image/*,.pdf"
+              maxCount={1}
+            >
               <Button icon={<UploadOutlined />}>Click to upload</Button>
             </Upload>
           </Form.Item>
