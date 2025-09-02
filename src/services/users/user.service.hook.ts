@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { userService } from "./user.service";
 
 export const useLogin = () => {
@@ -10,6 +10,15 @@ export const useLogin = () => {
     }) => await userService.login(variables.email, variables.password),
     onSuccess: (data, variables) => {
       variables.onSuccess(data);
+    },
+  });
+};
+
+export const useGetCurrentUser = () => {
+  return useQuery({
+    queryKey: ["userService.getCurrentUser", localStorage.getItem("token")],
+    queryFn: async () => {
+      return userService.getCurrentUser();
     },
   });
 };

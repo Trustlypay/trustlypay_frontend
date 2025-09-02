@@ -4,7 +4,7 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { routeMapMini } from "../../route-map";
 import { useState } from "react";
-import { useLogin } from "../../services/users/useer.service.hook";
+import { useLogin } from "../../services/users/user.service.hook";
 import axios from "axios";
 
 const Login = () => {

@@ -8,7 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { routeMapMini } from "./route-map";
 import { App as AntdApp } from "antd";
-import ReactQueryClient from "./queryclient";
+import { useGetCurrentUser } from "./services/users/user.service.hook";
+import UserContext from "./components/user-context";
 
 function App() {
   const navigate = useNavigate();
@@ -30,21 +31,27 @@ function App() {
     }
   }, [token]);
 
+  const { data: userDetails } = useGetCurrentUser();
+
   return (
     <div className="app">
       <AntdApp component={false}>
-        <ReactQueryClient>
-          <ConfigProvider
-            theme={{
-              token: {
-                fontFamily: "Manrope",
-                colorPrimary: "#26B24B",
-              },
-              algorithm: [theme.darkAlgorithm],
-              components: {
-                Form: { verticalLabelPadding: "0" },
-                Button: { defaultBorderColor: "#26B24B" },
-              },
+        <ConfigProvider
+          theme={{
+            token: {
+              fontFamily: "Manrope",
+              colorPrimary: "#26B24B",
+            },
+            algorithm: [theme.darkAlgorithm],
+            components: {
+              Form: { verticalLabelPadding: "0" },
+              Button: { defaultBorderColor: "#26B24B" },
+            },
+          }}
+        >
+          <UserContext.Provider
+            value={{
+              userDetails: userDetails,
             }}
           >
             <div className="initial-screen">
@@ -54,8 +61,8 @@ function App() {
                 <AppRoutes />
               </section>
             </div>
-          </ConfigProvider>
-        </ReactQueryClient>
+          </UserContext.Provider>
+        </ConfigProvider>
       </AntdApp>
     </div>
   );

@@ -1,3 +1,4 @@
+import type { IUserDetails } from "../../components/user-details.interface";
 import { AxiosX } from "../../utils/axios";
 
 export const userService = {
@@ -14,8 +15,8 @@ export const userService = {
     return response.data;
   },
 
-  currentUser: async (): Promise<string> => {
+  getCurrentUser: async (): Promise<IUserDetails> => {
     const response = await AxiosX.get(`/auth/current-user`);
-    return response.data;
+    return response.data?.user;
   },
 };

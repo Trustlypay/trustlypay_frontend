@@ -1,14 +1,51 @@
-import { App, Form, Input, Button } from "antd";
+import { App, Form, Input, Button, Select } from "antd";
 import WhiteBorder from "../common/white-border";
 import { StepForwardOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { routeMapMini } from "../../route-map";
 import MerchantSteps from "../common/merchant-steps";
+import {
+  useGetMerchantManagementBusinessCategory,
+  useGetMerchantManagementBusinessSubCategory,
+  useGetMerchantManagementBusinessType,
+  useGetMerchantManagementMonthlyExpenditure,
+  useGetMerchantManagementState,
+} from "../../services/merchant-management/merchant-management.service.hook.";
+import { useState } from "react";
+import type { IMerchantManagementBusinessSubCategory } from "../../services/merchant-management/interfaces/merchant-management-business-sub-category.interface";
 
 const MerchantManagementStep1 = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { message } = App.useApp();
+  const [subCategories, setSubCategories] = useState<
+    IMerchantManagementBusinessSubCategory[]
+  >([]);
+
+  const {
+    data: merchantManagementState,
+    isLoading: merchantManagementStateLoading,
+  } = useGetMerchantManagementState();
+
+  const {
+    data: merchantManagementBusinessCategory,
+    isLoading: merchantManagementBusinessCategoryLoading,
+  } = useGetMerchantManagementBusinessCategory();
+
+  const {
+    data: merchantManagementBusinessSubCategory,
+    isLoading: merchantManagementBusinessSubCategoryLoading,
+  } = useGetMerchantManagementBusinessSubCategory();
+
+  const {
+    data: merchantManagementBusinessType,
+    isLoading: merchantManagementBusinessTypeLoading,
+  } = useGetMerchantManagementBusinessType();
+
+  const {
+    data: merchantManagementMonthlyExpenditure,
+    isLoading: merchantManagementMonthlyExpenditureLoading,
+  } = useGetMerchantManagementMonthlyExpenditure();
 
   const onFinish = () => {
     void form.validateFields().then(() => {
@@ -101,7 +138,17 @@ const MerchantManagementStep1 = () => {
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Enter Business Monthly Expenditure" />
+            <Select
+              placeholder="Select Business Monthly Expenditure"
+              loading={merchantManagementMonthlyExpenditureLoading}
+              style={{ width: "100%" }}
+              options={merchantManagementMonthlyExpenditure?.map((item) => {
+                return {
+                  value: item.pk_monthly_expenditure_option_id,
+                  label: item.monthly_expenditure,
+                };
+              })}
+            />
           </Form.Item>
 
           <Form.Item
@@ -157,7 +204,14 @@ const MerchantManagementStep1 = () => {
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Enter State" />
+            <Select
+              placeholder="Select State"
+              loading={merchantManagementStateLoading}
+              style={{ width: "100%" }}
+              options={merchantManagementState?.map((item) => {
+                return { value: item.pk_state_id, label: item.state_name };
+              })}
+            />
           </Form.Item>
 
           <Form.Item
@@ -275,7 +329,17 @@ const MerchantManagementStep1 = () => {
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Enter Business Type" />
+            <Select
+              placeholder="Select Business Type"
+              loading={merchantManagementBusinessTypeLoading}
+              style={{ width: "100%" }}
+              options={merchantManagementBusinessType?.map((item) => {
+                return {
+                  value: item.pk_business_type_id,
+                  label: item.type_name,
+                };
+              })}
+            />
           </Form.Item>
 
           <Form.Item
@@ -289,7 +353,29 @@ const MerchantManagementStep1 = () => {
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Enter Business Category" />
+            <Select
+              placeholder="Select Business Category"
+              loading={merchantManagementBusinessCategoryLoading}
+              style={{ width: "100%" }}
+              options={merchantManagementBusinessCategory?.map((item) => {
+                return {
+                  value: item.pk_business_category_id,
+                  label: item.category_name,
+                };
+              })}
+              onChange={(categoryId) => {
+                form.setFieldsValue({ "Business Sub Category": undefined });
+                console.log(
+                  "merchantManagementBusinessSubCategory",
+                  merchantManagementBusinessSubCategory
+                );
+                const filtered = merchantManagementBusinessSubCategory?.filter(
+                  (sub) => sub?.fk_business_category_id === categoryId
+                );
+                console.log("filtered", filtered);
+                setSubCategories(filtered ?? []);
+              }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -303,7 +389,17 @@ const MerchantManagementStep1 = () => {
               { whitespace: true },
             ]}
           >
-            <Input placeholder="Enter Business Sub Category" />
+            <Select
+              placeholder="Select Business Sub Category"
+              loading={merchantManagementBusinessSubCategoryLoading}
+              style={{ width: "100%" }}
+              options={subCategories?.map((item) => {
+                return {
+                  value: item.pk_business_sub_category_id,
+                  label: item.sub_category_name,
+                };
+              })}
+            />
           </Form.Item>
         </div>
 
