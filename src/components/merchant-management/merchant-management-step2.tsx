@@ -1,5 +1,5 @@
 import { App, Button, Form, Upload } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { routeMapMini } from "../../route-map";
 import {
   StepBackwardOutlined,
@@ -8,11 +8,14 @@ import {
 } from "@ant-design/icons";
 import WhiteBorder from "../common/white-border";
 import MerchantSteps from "../common/merchant-steps";
+import { useUploadFileToSystem } from "../../services/merchant-management/merchant-management.service.hook.";
+import { FileForEnum } from "../payin/enums/file-for.enum";
 
 const MerchantManagementStep2 = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { message } = App.useApp();
+  const [searchParams] = useSearchParams();
 
   const beforeUpload = () => false;
 
@@ -50,36 +53,131 @@ const MerchantManagementStep2 = () => {
     },
   ];
 
+  const { mutate: uploadFileToSystem } = useUploadFileToSystem();
+
   const onFinish = () => {
     void form.validateFields().then(() => {
-      navigate(`${routeMapMini.merchantManagementStep3}?step=3`);
-      console.log("companyPANCard", form.getFieldValue("companyPANCard")[0]);
-      console.log("companyGST", form.getFieldValue("companyGST")[0]);
+      const merchantManagementId = searchParams.get("merchantid");
 
-      console.log("bankStatement", form.getFieldValue("bankStatement")[0]);
-      console.log("cancelledCheque", form.getFieldValue("cancelledCheque")[0]);
+      if (merchantManagementId) {
+        uploadFileToSystem({
+          file: form.getFieldValue("companyPANCard")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.companypancard,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
 
-      console.log(
-        "certificateofIncorporation",
-        form.getFieldValue("certificateofIncorporation")[0]
-      );
-      console.log("moa", form.getFieldValue("moa")[0]);
+        uploadFileToSystem({
+          file: form.getFieldValue("companyGST")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.companygst,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
 
-      console.log("aoa", form.getFieldValue("aoa")[0]);
-      console.log("authSignPANCard", form.getFieldValue("authSignPANCard")[0]);
+        uploadFileToSystem({
+          file: form.getFieldValue("bankStatement")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.bankstatement,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
 
-      console.log(
-        "authSignAadharCard",
-        form.getFieldValue("authSignAadharCard")[0]
-      );
-      message.success("Saved and proceed to next step");
+        uploadFileToSystem({
+          file: form.getFieldValue("cancelledCheque")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.cancelledcheque,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
+
+        uploadFileToSystem({
+          file: form.getFieldValue("certificateofIncorporation")[0]
+            ?.originFileObj,
+          fileFor: FileForEnum.certificateofincorporation,
+          merchantManagementId,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
+
+        uploadFileToSystem({
+          file: form.getFieldValue("moa")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.moa,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
+
+        uploadFileToSystem({
+          file: form.getFieldValue("aoa")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.aoa,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
+
+        uploadFileToSystem({
+          file: form.getFieldValue("authSignPANCard")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.authsignpancard,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
+
+        uploadFileToSystem({
+          file: form.getFieldValue("authSignAadharCard")[0]?.originFileObj,
+          merchantManagementId,
+          fileFor: FileForEnum.authsignaadharcard,
+          onSuccess: (data) => {
+            console.log("data", data);
+          },
+          onError: function (): void {
+            throw new Error("file upload failed");
+          },
+        });
+        message.success("Saved and proceed to next step");
+        navigate(
+          `${routeMapMini.merchantManagementStep3}?step=3&merchantid=${merchantManagementId}`
+        );
+      }
     });
   };
 
   const onFinishFailed = (err: any) => {
-    console.log(err);
-    navigate(`${routeMapMini.merchantManagementStep3}?step=3`);
-    message.error("Submit failed!");
+    console.log("fill all required fields" + err);
   };
 
   const normFile = (e: any) => {

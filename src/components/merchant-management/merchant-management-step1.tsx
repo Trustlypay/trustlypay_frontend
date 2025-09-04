@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { routeMapMini } from "../../route-map";
 import MerchantSteps from "../common/merchant-steps";
 import {
+  useCreateMerchantStep1,
   useGetMerchantManagementBusinessCategory,
   useGetMerchantManagementBusinessSubCategory,
   useGetMerchantManagementBusinessType,
@@ -47,44 +48,56 @@ const MerchantManagementStep1 = () => {
     isLoading: merchantManagementMonthlyExpenditureLoading,
   } = useGetMerchantManagementMonthlyExpenditure();
 
+  const { mutateAsync: createMerchantStep1Mutate } = useCreateMerchantStep1();
+
   const onFinish = () => {
-    void form.validateFields().then(() => {
-      message.success("Saved and proceed to next step");
-      navigate(`${routeMapMini.merchantManagementStep2}?step=2`);
-      console.log(form.getFieldValue("Business Name"));
-      console.log(form.getFieldValue("Business Monthly Expenditure"));
-      console.log(form.getFieldValue("Address 1st Line"));
-      console.log(form.getFieldValue("Address 2nd Line"));
-      console.log(form.getFieldValue("City"));
-      console.log(form.getFieldValue("State"));
-      console.log(form.getFieldValue("Pincode"));
-      console.log(form.getFieldValue("Country"));
-      console.log(form.getFieldValue("Business Website"));
+    void form.validateFields().then(() => {});
 
-      console.log(form.getFieldValue("Business PAN Number"));
-      console.log(form.getFieldValue("Business GST Number"));
-      console.log(form.getFieldValue("Business Type"));
-      console.log(form.getFieldValue("Business Category"));
-      console.log(form.getFieldValue("Business Sub Category"));
-
-      console.log(form.getFieldValue("Bank Name"));
-      console.log(form.getFieldValue("IFSC Code"));
-      console.log(form.getFieldValue("Bank Account Number"));
-      console.log(form.getFieldValue("Re-Enter Bank Account Number"));
-
-      console.log(form.getFieldValue("Auth Sign Name"));
-      console.log(form.getFieldValue("Auth Sign Contact Number"));
-      console.log(form.getFieldValue("Auth Sign PAN Number"));
-      console.log(form.getFieldValue("Auth Sign AADHAR Number"));
-      console.log(form.getFieldValue("Auth Sign Email ID"));
-      console.log(form.getFieldValue("Dashboard Password"));
+    createMerchantStep1Mutate({
+      createMerchantStep1: {
+        fk_monthly_expenditure_option_id: form.getFieldValue(
+          "Business Monthly Expenditure"
+        ),
+        business_name: form.getFieldValue("Business Name"),
+        address_line1: form.getFieldValue("Address 1st Line"),
+        address_line2: form.getFieldValue("Address 2nd Line"),
+        city: form.getFieldValue("City"),
+        fk_state_id: form.getFieldValue("State"),
+        pincode: Number(form.getFieldValue("Pincode")),
+        country: form.getFieldValue("Country"),
+        business_website: form.getFieldValue("Business Website"),
+        business_pan: form.getFieldValue("Business PAN Number"),
+        business_gst: form.getFieldValue("Business GST Number"),
+        fk_business_type_id: form.getFieldValue("Business Type"),
+        fk_business_category_id: form.getFieldValue("Business Category"),
+        fk_business_sub_category_id: form.getFieldValue(
+          "Business Sub Category"
+        ),
+        bank_name: form.getFieldValue("Bank Name"),
+        ifsc_code: form.getFieldValue("IFSC Code"),
+        bank_account_number: form.getFieldValue("Bank Account Number"),
+        auth_sign_name: form.getFieldValue("Auth Sign Name"),
+        auth_sign_contact_number: Number(
+          form.getFieldValue("Auth Sign Contact Number")
+        ),
+        auth_sign_pan: form.getFieldValue("Auth Sign PAN Number"),
+        auth_sign_aadhar: form.getFieldValue("Auth Sign AADHAR Number"),
+        auth_sign_email: form.getFieldValue("Auth Sign Email ID"),
+        dashboard_password: form.getFieldValue("Dashboard Password"),
+      },
+      onSuccess: (data) => {
+        console.log("data", data);
+        message.success("Saved and proceed to next step");
+        navigate(
+          `${routeMapMini.merchantManagementStep2}?step=2&merchantid=${data?.pk_merchant_management_id}`
+        );
+      },
+      onError: () => {},
     });
   };
 
   const onFinishFailed = (err: any) => {
-    console.log(err);
-    navigate(`${routeMapMini.merchantManagementStep2}?step=2`);
-    message.error("Submit failed!");
+    console.log("fill all required fields" + err);
   };
 
   return (
@@ -93,6 +106,32 @@ const MerchantManagementStep1 = () => {
       <div className="playfair-display-24"> Merchant Details</div>
       <WhiteBorder />
       <Form
+        initialValues={{
+          "Business Name": "abc",
+          "Business Monthly Expenditure": 2,
+          "Address 1st Line": "abc",
+          "Address 2nd Line": "abc",
+          City: "hyderabad",
+          State: 7,
+          Pincode: "500007",
+          Country: "india",
+          "Business Website": "http",
+          "Business PAN Number": "ABCCR4567F",
+          "Business GST Number": "27AAACT2727Q1ZW",
+          "Business Type": 7,
+          "Business Category": 4,
+          "Business Sub Category": 35,
+          "Bank Name": "ert",
+          "IFSC Code": "234",
+          "Bank Account Number": "123",
+          "Re-Enter Bank Account Number": "123",
+          "Auth Sign Name": "abc",
+          "Auth Sign Contact Number": "8234567890",
+          "Auth Sign PAN Number": "ABCPP4567F",
+          "Auth Sign AADHAR Number": "123456789123",
+          "Auth Sign Email ID": "kiran@123.com",
+          "Dashboard Password": "Dashboard@123",
+        }}
         style={{
           margin: "0px auto",
           minWidth: "800px",
@@ -132,11 +171,7 @@ const MerchantManagementStep1 = () => {
             name="Business Monthly Expenditure"
             validateFirst
             validateTrigger="onSubmit"
-            rules={[
-              { required: true },
-              { required: true, min: 3 },
-              { whitespace: true },
-            ]}
+            rules={[{ required: true }]}
           >
             <Select
               placeholder="Select Business Monthly Expenditure"
@@ -198,11 +233,7 @@ const MerchantManagementStep1 = () => {
             name="State"
             validateFirst
             validateTrigger="onSubmit"
-            rules={[
-              { required: true },
-              { required: true, min: 3 },
-              { whitespace: true },
-            ]}
+            rules={[{ required: true }]}
           >
             <Select
               placeholder="Select State"
@@ -295,7 +326,7 @@ const MerchantManagementStep1 = () => {
               maxLength={10}
               onChange={(e) => {
                 const value = e.target.value.toUpperCase();
-                form.setFieldsValue({ businessPANNumber: value });
+                form.setFieldsValue({ "Business PAN Number": value });
               }}
             />
           </Form.Item>
@@ -323,11 +354,7 @@ const MerchantManagementStep1 = () => {
             name="Business Type"
             validateFirst
             validateTrigger="onSubmit"
-            rules={[
-              { required: true },
-              { required: true, min: 3 },
-              { whitespace: true },
-            ]}
+            rules={[{ required: true }]}
           >
             <Select
               placeholder="Select Business Type"
@@ -347,11 +374,7 @@ const MerchantManagementStep1 = () => {
             name="Business Category"
             validateFirst
             validateTrigger="onSubmit"
-            rules={[
-              { required: true },
-              { required: true, min: 3 },
-              { whitespace: true },
-            ]}
+            rules={[{ required: true }]}
           >
             <Select
               placeholder="Select Business Category"
@@ -365,14 +388,10 @@ const MerchantManagementStep1 = () => {
               })}
               onChange={(categoryId) => {
                 form.setFieldsValue({ "Business Sub Category": undefined });
-                console.log(
-                  "merchantManagementBusinessSubCategory",
-                  merchantManagementBusinessSubCategory
-                );
                 const filtered = merchantManagementBusinessSubCategory?.filter(
                   (sub) => sub?.fk_business_category_id === categoryId
                 );
-                console.log("filtered", filtered);
+
                 setSubCategories(filtered ?? []);
               }}
             />
@@ -383,11 +402,7 @@ const MerchantManagementStep1 = () => {
             name="Business Sub Category"
             validateFirst
             validateTrigger="onSubmit"
-            rules={[
-              { required: true },
-              { required: true, min: 3 },
-              { whitespace: true },
-            ]}
+            rules={[{ required: true }]}
           >
             <Select
               placeholder="Select Business Sub Category"
@@ -459,7 +474,10 @@ const MerchantManagementStep1 = () => {
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue("bankAccountNumber") === value) {
+                  if (
+                    !value ||
+                    getFieldValue("Bank Account Number") === value
+                  ) {
                     return Promise.resolve();
                   }
                   return Promise.reject(
@@ -548,7 +566,7 @@ const MerchantManagementStep1 = () => {
               maxLength={10}
               onChange={(e) => {
                 const value = e.target.value.toUpperCase();
-                form.setFieldsValue({ authSignPANNumber: value });
+                form.setFieldsValue({ "Auth Sign PAN Number": value });
               }}
             />
           </Form.Item>

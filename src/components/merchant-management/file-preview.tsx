@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal, Spin } from "antd";
-import { usePreviewDocumentByFileIdInFilePreview } from "../../services/aws-file-upload/aws-file-upload.hook";
+import { usePreviewDocumentByFileIdInFilePreview } from "../../services/aws-file-upload/aws-file-upload.service.hook";
 
 type IFilePreview = {
   fileTitle: string;

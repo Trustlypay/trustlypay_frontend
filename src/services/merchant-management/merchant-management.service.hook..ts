@@ -1,10 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosX } from "../../utils/axios";
 import type { IMerchantManagementState } from "./interfaces/merchant-management-state.interface";
 import type { IMerchantManagementBusinessCategory } from "./interfaces/merchant-management-business-category.interface";
 import type { IMerchantManagementBusinessSubCategory } from "./interfaces/merchant-management-business-sub-category.interface";
 import type { IMerchantManagementBusinessType } from "./interfaces/merchant-management-business-type.interface";
 import type { IMerchantManagementMonthlyExpenditure } from "./interfaces/merchant-management-monthly-expenditure.interface";
+import type { ICreateMerchantStep1 } from "./interfaces/create-merchant-step-1.interface";
+import { merchantManagementService } from "./merchant-management.service.";
+import type { RcFile } from "antd/es/upload";
+import type { IUploadFileToSystem } from "./interfaces/upload-file-to-system.interface";
 
 export const useGetMerchantManagementState = () => {
   return useQuery({
@@ -67,6 +71,50 @@ export const useGetMerchantManagementMonthlyExpenditure = () => {
       );
 
       return response.data;
+    },
+  });
+};
+
+export const useCreateMerchantStep1 = () => {
+  return useMutation({
+    mutationFn: (args: {
+      createMerchantStep1: ICreateMerchantStep1;
+      onSuccess: (data: { pk_merchant_management_id: number }) => void;
+      onError: () => void;
+    }) => {
+      return merchantManagementService.createMerchantStep1(
+        args.createMerchantStep1
+      );
+    },
+    onSuccess: (data, variables) => {
+      variables.onSuccess(data);
+    },
+    onError: (_error, variables) => {
+      variables.onError();
+    },
+  });
+};
+
+export const useUploadFileToSystem = () => {
+  return useMutation({
+    mutationFn: (args: {
+      file: RcFile;
+      merchantManagementId: string;
+      fileFor: string;
+      onSuccess: (data: IUploadFileToSystem) => void;
+      onError: () => void;
+    }) => {
+      return merchantManagementService.uploadFileToSystem(
+        args.file,
+        args.merchantManagementId,
+        args.fileFor
+      );
+    },
+    onError: (_error, variables) => {
+      variables.onError();
+    },
+    onSuccess: (data, variables) => {
+      variables.onSuccess(data);
     },
   });
 };

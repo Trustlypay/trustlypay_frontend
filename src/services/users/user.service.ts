@@ -17,6 +17,6 @@ export const userService = {
 
   getCurrentUser: async (): Promise<IUserDetails> => {
     const response = await AxiosX.get(`/auth/current-user`);
-    return response.data?.user;
+    return response.data;
   },
 };
