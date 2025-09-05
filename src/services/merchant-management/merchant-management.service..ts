@@ -2,6 +2,7 @@ import type { RcFile } from "antd/es/upload";
 import { AxiosX } from "../../utils/axios";
 import type { ICreateMerchantStep1 } from "./interfaces/create-merchant-step-1.interface";
 import type { IUploadFileToSystem } from "./interfaces/upload-file-to-system.interface";
+import type { ICreateMerchantStep2 } from "./interfaces/create-merchant-step-2.interface";
 
 export const merchantManagementService = {
   createMerchantStep1: async (
@@ -33,6 +34,17 @@ export const merchantManagementService = {
           "Content-Type": "multipart/form-data",
         },
       }
+    );
+
+    return response.data;
+  },
+
+  createMerchantStep2: async (
+    createMerchantStep2: ICreateMerchantStep2
+  ): Promise<{ fk_merchant_management_id: number }> => {
+    const response = await AxiosX.post(
+      `/merchant-management/create-merchant-step-2`,
+      createMerchantStep2
     );
 
     return response.data;

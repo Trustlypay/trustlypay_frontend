@@ -6,80 +6,82 @@ import WhiteBorder from "../common/white-border";
 import dayjs from "dayjs";
 import { capitalizeFirstLetter } from "../../utils/first-letter-cap";
 import { useMerchantRoutingDetails } from "../../services/dashboard/dashboard.service.hook";
+import { useGetMerchantManagement } from "../../services/merchant-management/merchant-management.service.hook.";
 
-const merchants = [
-  {
-    merchantName: "Peshot Info Tech Private Limited",
-    merchantId: "TP-2025",
-    mode: "Live",
-    merchantVendor: "Apexio",
-  },
-  {
-    merchantName: "TrustlyPay",
-    merchantId: "TP-2024",
-    mode: "Live",
-    merchantVendor: "Apexio",
-  },
-  {
-    merchantName: "esayway business",
-    merchantId: "TP-2023",
-    mode: "Test",
-    merchantVendor: "Apexio",
-  },
-  {
-    merchantName: "astech business",
-    merchantId: "TP-2023",
-    mode: "Test",
-    merchantVendor: "Apexio",
-  },
-  {
-    merchantName: "esayway business",
-    merchantId: "TP-2023",
-    mode: "Test",
-    merchantVendor: "Indiplex",
-  },
-  {
-    merchantName: "astech business",
-    merchantId: "TP-2023",
-    mode: "Test",
-    merchantVendor: "Indiplex",
-  },
-  {
-    merchantName: "Peshot Info Tech Private Limited",
-    merchantId: "TP-2025",
-    mode: "Live",
-    merchantVendor: "Indiplex",
-  },
-  {
-    merchantName: "TrustlyPay",
-    merchantId: "TP-2024",
-    mode: "Live",
-    merchantVendor: "Indiplex",
-  },
-  {
-    merchantName: "astech business",
-    merchantId: "TP-2023",
-    mode: "Test",
-    merchantVendor: "Indiplex",
-  },
-  {
-    merchantName: "TrustlyPay",
-    merchantId: "TP-2024",
-    mode: "Live",
-    merchantVendor: "Indiplex",
-  },
-  {
-    merchantName: "astech business",
-    merchantId: "TP-2023",
-    mode: "Test",
-    merchantVendor: "Indiplex",
-  },
-];
+// const merchants = [
+//   {
+//     merchantName: "Peshot Info Tech Private Limited",
+//     merchantId: "TP-2025",
+//     mode: "Live",
+//     merchantVendor: "Apexio",
+//   },
+//   {
+//     merchantName: "TrustlyPay",
+//     merchantId: "TP-2024",
+//     mode: "Live",
+//     merchantVendor: "Apexio",
+//   },
+//   {
+//     merchantName: "esayway business",
+//     merchantId: "TP-2023",
+//     mode: "Test",
+//     merchantVendor: "Apexio",
+//   },
+//   {
+//     merchantName: "astech business",
+//     merchantId: "TP-2023",
+//     mode: "Test",
+//     merchantVendor: "Apexio",
+//   },
+//   {
+//     merchantName: "esayway business",
+//     merchantId: "TP-2023",
+//     mode: "Test",
+//     merchantVendor: "Indiplex",
+//   },
+//   {
+//     merchantName: "astech business",
+//     merchantId: "TP-2023",
+//     mode: "Test",
+//     merchantVendor: "Indiplex",
+//   },
+//   {
+//     merchantName: "Peshot Info Tech Private Limited",
+//     merchantId: "TP-2025",
+//     mode: "Live",
+//     merchantVendor: "Indiplex",
+//   },
+//   {
+//     merchantName: "TrustlyPay",
+//     merchantId: "TP-2024",
+//     mode: "Live",
+//     merchantVendor: "Indiplex",
+//   },
+//   {
+//     merchantName: "astech business",
+//     merchantId: "TP-2023",
+//     mode: "Test",
+//     merchantVendor: "Indiplex",
+//   },
+//   {
+//     merchantName: "TrustlyPay",
+//     merchantId: "TP-2024",
+//     mode: "Live",
+//     merchantVendor: "Indiplex",
+//   },
+//   {
+//     merchantName: "astech business",
+//     merchantId: "TP-2023",
+//     mode: "Test",
+//     merchantVendor: "Indiplex",
+//   },
+// ];
 
 const MerchantManagement = () => {
   const navigate = useNavigate();
 
   const { data, isLoading } = useMerchantRoutingDetails();
+  const { data: merchants } = useGetMerchantManagement();
 
   const columns = [
     {
@@ -146,7 +148,7 @@ const MerchantManagement = () => {
           </div>
         </div>
         <div className="grid-4 scrollbar">
-          {merchants.map((merchant) => (
+          {merchants?.map((merchant) => (
             <div
               className="merchant-card"
               // style={{ background: "#F2A85F" }}
@@ -155,13 +157,13 @@ const MerchantManagement = () => {
               <div className="merchant-card-content">
                 <div className="merchant-display-flex">
                   <span className="merchant-initial-letter">
-                    {capitalizeFirstLetter(merchant.merchantName).charAt(0)}
+                    {capitalizeFirstLetter(merchant.business_name).charAt(0)}
                   </span>
                   <span className="ellipsis-text merchant-name">
-                    {capitalizeFirstLetter(merchant.merchantName)}
+                    {capitalizeFirstLetter(merchant.business_name)}
                   </span>
                 </div>
-                {merchant.mode === "Live" ? (
+                {/* {merchant.mode === "Live" ? (
                   <div className="status merchant-display-flex">
                     <span className="live-dot"> </span>
                     <span className="live-color">{merchant.mode}</span>
@@ -171,13 +173,13 @@ const MerchantManagement = () => {
                     <span className="test-dot"> </span>
                     <span className="test-color">{merchant.mode}</span>
                   </div>
-                )}
+                )} */}
               </div>
               <div className="merchant-card-content">
                 <div className="merchant-id-font-weight">
-                  {merchant.merchantId}
+                  {merchant.merchant_gid}
                 </div>
-                <div>{merchant.merchantVendor}</div>
+                {/* <div>{merchant.merchantVendor}</div> */}
               </div>
             </div>
           ))}

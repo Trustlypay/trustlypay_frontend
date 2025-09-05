@@ -9,6 +9,9 @@ import type { ICreateMerchantStep1 } from "./interfaces/create-merchant-step-1.i
 import { merchantManagementService } from "./merchant-management.service.";
 import type { RcFile } from "antd/es/upload";
 import type { IUploadFileToSystem } from "./interfaces/upload-file-to-system.interface";
+import type { IGetMerchantManagement } from "./interfaces/get-merchant-management.interface";
+import type { IGetMerchantManagementStep } from "./interfaces/get-erchant-management-step.interface";
+import type { ICreateMerchantStep2 } from "./interfaces/create-merchant-step-2.interface";
 
 export const useGetMerchantManagementState = () => {
   return useQuery({
@@ -115,6 +118,52 @@ export const useUploadFileToSystem = () => {
     },
     onSuccess: (data, variables) => {
       variables.onSuccess(data);
+    },
+  });
+};
+
+export const useGetMerchantManagementStep = (merchantManagementId: string) => {
+  return useQuery({
+    queryKey: ["merchantManagement.getMerchantManagementStep"],
+    queryFn: async (): Promise<IGetMerchantManagementStep> => {
+      const response = await AxiosX.get(
+        `/merchant-management/get-merchant-management-step/${merchantManagementId}`
+      );
+
+      return response.data;
+    },
+  });
+};
+
+export const useGetMerchantManagement = () => {
+  return useQuery({
+    queryKey: ["merchantManagement.getMerchantManagement"],
+    queryFn: async (): Promise<IGetMerchantManagement[]> => {
+      const response = await AxiosX.get(
+        `/merchant-management/get-merchant-management`
+      );
+
+      return response.data;
+    },
+  });
+};
+
+export const useCreateMerchantStep2 = () => {
+  return useMutation({
+    mutationFn: (args: {
+      createMerchantStep2: ICreateMerchantStep2;
+      onSuccess: (data: { fk_merchant_management_id: number }) => void;
+      onError: () => void;
+    }) => {
+      return merchantManagementService.createMerchantStep2(
+        args.createMerchantStep2
+      );
+    },
+    onSuccess: (data, variables) => {
+      variables.onSuccess(data);
+    },
+    onError: (_error, variables) => {
+      variables.onError();
     },
   });
 };
