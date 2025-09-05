@@ -115,6 +115,9 @@ const ResellerStep3 = React.lazy(
 const ResellerStep4 = React.lazy(
   async () => await import("./components/reseller/reseller-step4")
 );
+const AddNewUser = React.lazy(
+  async () => await import("./components/access-management/add-new-user")
+);
 
 function AppRoutes() {
   return (
@@ -397,6 +400,14 @@ function AppRoutes() {
         element={
           <Suspense fallback={<SuspenseFallback />}>
             <ResellerStep4 />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={routeMapMini.addNewUser}
+        element={
+          <Suspense fallback={<SuspenseFallback />}>
+            <AddNewUser />
           </Suspense>
         }
       ></Route>

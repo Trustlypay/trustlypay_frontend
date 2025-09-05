@@ -30,7 +30,7 @@ const Sidebar = () => {
     },
     {
       image: "/settlement.svg",
-      title: "Settlement",
+      title: "Settlements",
       activeImage: "/active/settlement.png",
       route: routeMapMini.settlement,
       allowed_role_permissions: [

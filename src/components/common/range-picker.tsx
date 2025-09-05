@@ -36,7 +36,7 @@ const RangePicker = ({
         gap: "12px",
       }}
     >
-      <Paragraph style={{ margin: 0 }}>Date : </Paragraph>
+      <Paragraph style={{ margin: 0 }}>Date </Paragraph>
       <DatePicker.RangePicker
         value={[
           fromDate ? dayjs(fromDate) : null,

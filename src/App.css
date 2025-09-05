@@ -80,7 +80,7 @@
 .section-header {
     display: flex;
     flex-direction: column;
-    gap: 12px
+    gap: 24px
 }
 
 .main-content-header {

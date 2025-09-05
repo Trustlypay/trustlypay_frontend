@@ -34,6 +34,7 @@ enum routeMapMini {
   resellerStep2 = "/reseller-step2",
   resellerStep3 = "/reseller-step3",
   resellerStep4 = "/reseller-step4",
+  addNewUser = "/access-management/add-new-user",
 }
 
 export { routeMapMini };

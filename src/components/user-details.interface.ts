@@ -7,4 +7,5 @@ export interface IUserDetails {
   created_at: Date;
   role: string;
   role_permission: RolePermissionsEnum[];
+  component_level_access: any[];
 }
